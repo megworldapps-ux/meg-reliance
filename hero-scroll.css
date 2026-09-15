@@ -1,0 +1,292 @@
+/* ==========================================================
+   Hero Scroll Timeline — isolated Hero-only styles
+   ========================================================== */
+.hero-scroll-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hero-scroll-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 620px;
+  overflow:visible;
+  isolation: isolate;
+}
+
+.hero-scroll-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 0%;
+  display: block;
+  border: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+ 
+}
+
+.hero-scroll-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 6, 15, 0.82) 0%, rgba(5, 6, 15, 0.52) 38%, rgba(5, 6, 15, 0.18) 72%, rgba(5, 6, 15, 0.30) 100%),
+    linear-gradient(180deg, rgba(5, 6, 15, 0.12) 0%, rgba(5, 6, 15, 0.18) 60%, rgba(5, 6, 15, 0.72) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Existing Hero becomes the content layer; its original visual is hidden. */
+.hero-scroll-wrapper > .hero-scroll-sticky > .hero {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100%;
+  padding-top: 0;
+  background: transparent;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-scroll-wrapper .hero-glow {
+  display: none;
+}
+
+.hero-scroll-wrapper .hero-inner {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+ padding: 40px 0 70px;
+}
+
+.hero-scroll-wrapper .hero-copy {
+  max-width: 620px;
+}
+
+.hero-scroll-wrapper .hero-visual {
+  display: none;
+}
+
+.hero-scroll-wrapper .hero-strip {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  background: rgba(10, 8, 23, 0.72);
+  border-top-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+/* The video is never an interactive player. */
+.hero-scroll-wrapper video::-webkit-media-controls,
+.hero-scroll-wrapper video::-webkit-media-controls-enclosure,
+.hero-scroll-wrapper video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+@media (max-width: 960px) {
+  .hero-scroll-wrapper {
+    height: 260vh;
+  }
+
+  .hero-scroll-sticky {
+    min-height: 600px;
+  }
+
+  .hero-scroll-wrapper .hero-inner {
+    padding-block: 28px 22px;
+  }
+
+  .hero-scroll-wrapper .hero-copy {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-scroll-wrapper {
+    height: 240vh;
+  }
+
+  .hero-scroll-sticky {
+    min-height: 650px;
+  }
+
+  .hero-scroll-video {
+    object-position: 60% center;
+  }
+
+  .hero-scroll-overlay {
+    background:
+      linear-gradient(180deg, rgba(5, 6, 15, 0.28) 0%, rgba(5, 6, 15, 0.46) 55%, rgba(5, 6, 15, 0.84) 100%),
+      linear-gradient(90deg, rgba(5, 6, 15, 0.60), rgba(5, 6, 15, 0.18));
+  }
+
+  .hero-scroll-wrapper .hero-inner {
+    padding-block: 24px 18px;
+  }
+
+  .hero-scroll-wrapper .hero-title {
+    font-size: clamp(2.15rem, 10vw, 3.2rem);
+    margin-bottom: 16px;
+  }
+
+  .hero-scroll-wrapper .hero-desc {
+    font-size: 0.94rem;
+    margin-bottom: 22px;
+  }
+
+  .hero-scroll-wrapper .hero-cta {
+    gap: 10px;
+  }
+
+  .hero-scroll-wrapper .hero-cta .btn {
+    padding: 12px 20px;
+  }
+
+  .hero-scroll-wrapper .hero-strip {
+    padding-block: 12px;
+  }
+
+  .hero-scroll-wrapper .strip-track {
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-wrapper {
+    height: 100vh;
+  }
+
+  .hero-scroll-wrapper .hero-scroll-video {
+    opacity: 0.35;
+  }
+}
+/* =====================================================
+   CAPTCHA
+===================================================== */
+
+.captcha-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 50px;
+
+    margin-top: 4px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.035);
+}
+
+
+.captcha-question {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    min-width: 130px;
+}
+
+
+.captcha-question span {
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    opacity: 0.65;
+}
+
+
+.captcha-question strong {
+    font-size: 18px;
+
+    letter-spacing: 1px;
+}
+
+
+#captchaAnswer {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #fff;
+
+    outline: none;
+}
+
+
+#captchaAnswer:focus {
+    border-color: #a855f7;
+}
+
+
+#captchaAnswer::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* =====================================================
+   FORM STATUS
+===================================================== */
+
+.form-note.success {
+    color: #65e6a5;
+}
+
+
+.form-note.error {
+    color: #ff7373;
+}
+
+
+#submitEnquiryBtn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .captcha-box {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .captcha-question {
+        min-width: 0;
+    }
+
+}
