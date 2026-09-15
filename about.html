@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="about.css">
 </head>
 <body>
     <!-- ============ HEADER ============ -->
@@ -621,66 +622,350 @@
 <!-- =========================
      MEET THE BOARD
 ========================= -->
+<!-- =========================================================
+     MEET THE BOARD SECTION
+========================================================= -->
 
-<section class="meet-board">
+<section class="board-section" id="board">
 
-    <h1>Meet the Board</h1>
-
-    <p class="board-subtitle">
-        Our board is a synergy of technical mastery and business acumen.
-    </p>
+    <!-- BACKGROUND DECORATION -->
+    <div class="board-bg-glow board-glow-left"></div>
+    <div class="board-bg-glow board-glow-right"></div>
 
 
-    <div class="board-cards">
+    <!-- SECTION HEADER -->
 
-        <!-- Card 1 -->
+    <div class="board-section-header">
 
-        <div class="member-card">
+        <span class="board-eyebrow">
+            OUR LEADERSHIP
+        </span>
 
-            <img src="public/men1.webp" alt="Ashish SK">
+        <h2>
+            Meet the <span>Board</span>
+        </h2>
 
-            <h2>Ashish SK</h2>
+        <p>
+            Our board is a synergy of technical mastery and business acumen,
+            driving creativity, education, and opportunities for a brighter tomorrow.
+        </p>
 
-            <p>
-                Founder - Punnaryug Artvision Pvt. Ltd.<br>
-                Founding Director - Indian Institute of Creative Technologies (IICT)
-            </p>
+    </div>
+
+
+    <!-- =====================================================
+         BOARD MEMBERS
+    ====================================================== -->
+
+    <div class="board-container">
+
+
+        <!-- =================================================
+             MEMBER 1
+        ================================================== -->
+
+        <article class="board-card">
+
+            <div class="board-number">
+                01
+            </div>
+
+            <div class="board-photo">
+
+                <img
+                    src="public/board1 (2).png"
+                    alt="Ashish SK"
+                >
+
+            </div>
+
+
+            <div class="board-info">
+
+                <span class="board-role">
+                    Center Head
+                </span>
+
+                <h3>
+                    Upendra Naithani
+                </h3>
+
+                <p class="board-company">
+                   Reliance Animation Academy
+                </p>
+
+
+                <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="openBoardDetails('ashish')"
+                >
+                    Learn More
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             MEMBER 2
+        ================================================== -->
+
+        <article class="board-card board-card-center">
+
+            <div class="board-number">
+                02
+            </div>
+
+            <div class="board-photo">
+
+                <img
+                    src="public/board2.jpeg"
+                    alt="Aashish Mall"
+                >
+
+            </div>
+
+
+            <div class="board-info">
+
+                <span class="board-role">
+                    National Academic Manager
+                </span>
+
+                <h3>
+                   M S Ramachandran
+                </h3>
+
+                <p class="board-company">
+                    Reliance Animation Academy
+                </p>
+
+                
+
+                <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="openBoardDetails('aashish')"
+                >
+                    Learn More
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             MEMBER 3
+        ================================================== -->
+
+        <article class="board-card">
+
+            <div class="board-number">
+                03
+            </div>
+
+            <div class="board-photo">
+
+                <img
+                    src="public/board3.jpeg"
+                    alt="Ankur Chauhan"
+                >
+
+            </div>
+
+
+            <div class="board-info">
+
+                <span class="board-role">
+                    Mentor
+                </span>
+
+                <h3>
+                   Baskar Raj Balasubramanian
+                </h3>
+
+                <p class="board-company">
+                     Reliance Animation Academy
+                </p>
+
+                
+
+                <button
+                    type="button"
+                    class="learn-more-btn"
+                    onclick="openBoardDetails('ankur')"
+                >
+                    Learn More
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         BOTTOM HIGHLIGHTS
+    ====================================================== -->
+
+    <div class="board-highlights">
+
+        <div class="board-highlight">
+
+            <span class="highlight-icon">◆</span>
+
+            <div>
+                <strong>Nurturing Talent</strong>
+                <small>Building creative careers</small>
+            </div>
 
         </div>
 
 
-        <!-- Card 2 -->
+        <div class="highlight-divider"></div>
 
-        <div class="member-card">
 
-            <img src="public/women.webp" alt="Aashish Mall">
+        <div class="board-highlight">
 
-            <h2>Aashish Mall</h2>
+            <span class="highlight-icon">✦</span>
 
-            <p>
-                Co-founder & Director - Paperboat Design Studios
-            </p>
+            <div>
+                <strong>Industry Collaboration</strong>
+                <small>Connecting education &amp; industry</small>
+            </div>
 
         </div>
 
 
-        <!-- Card 3 -->
+        <div class="highlight-divider"></div>
 
-        <div class="member-card">
 
-            <img src="public/men2.webp" alt="Ankur Chauhan">
+        <div class="board-highlight">
 
-            <h2>Ankur Chauhan</h2>
+            <span class="highlight-icon">◇</span>
 
-            <p>
-                Animation Director (3D) - Reliance Animation Studios
-            </p>
+            <div>
+                <strong>Creative Innovation</strong>
+                <small>Inspiring new possibilities</small>
+            </div>
+
+        </div>
+
+
+        <div class="highlight-divider"></div>
+
+
+        <div class="board-highlight">
+
+            <span class="highlight-icon">↗</span>
+
+            <div>
+                <strong>Brighter Opportunities</strong>
+                <small>Shaping the next generation</small>
+            </div>
 
         </div>
 
     </div>
 
 </section>
+
+
+
+<!-- =========================================================
+     BOARD MEMBER DETAIL MODAL
+========================================================= -->
+
+<div
+    class="board-detail-overlay"
+    id="boardDetailOverlay"
+>
+
+    <div
+        class="board-detail-card"
+        id="boardDetailCard"
+    >
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+            type="button"
+            class="board-detail-close"
+            id="boardDetailClose"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+
+        <!-- LEFT IMAGE -->
+
+        <div class="board-detail-image">
+
+            <div class="detail-image-glow"></div>
+
+            <img
+                id="boardDetailImage"
+                src=""
+                alt=""
+            >
+
+        </div>
+
+
+
+        <!-- RIGHT CONTENT -->
+
+        <div class="board-detail-content">
+
+            <span
+                class="board-detail-role"
+                id="boardDetailRole"
+            ></span>
+
+
+            <h2
+                id="boardDetailName"
+            ></h2>
+
+
+            <h4
+                id="boardDetailCompany"
+            ></h4>
+
+
+            <div class="detail-line"></div>
+
+
+            <p
+                id="boardDetailDescription"
+            ></p>
+
+
+            <div class="detail-tags">
+
+                <span>Leadership</span>
+                <span>Creative</span>
+                <span>Industry</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -879,6 +1164,6 @@ Map of Reliance Animation Academy Velachery Chennai
         />
     </svg>
 </a>
-    
+ <script src="board.js"></script> 
 </body>
 </html>

@@ -1,0 +1,1210 @@
+/* =========================================================
+   MEET THE BOARD SECTION
+========================================================= */
+
+.board-section {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 70px 4% 45px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(105, 55, 190, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #090718 0%,
+            #100b22 50%,
+            #080613 100%
+        );
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   BACKGROUND GLOWS
+========================================================= */
+
+.board-bg-glow {
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: 0.12;
+
+    pointer-events: none;
+}
+
+.board-glow-left {
+    left: -250px;
+    top: 250px;
+
+    background: #743cff;
+}
+
+.board-glow-right {
+    right: -250px;
+    bottom: 100px;
+
+    background: #e538b8;
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.board-section-header {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto 35px;
+
+    text-align: center;
+}
+
+.board-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    color: #ae67ff;
+}
+
+.board-section-header h2 {
+    margin: 0;
+
+    font-size: clamp(38px, 4.5vw, 60px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    color: #ffffff;
+}
+
+.board-section-header h2 span {
+    background:
+        linear-gradient(
+            90deg,
+            #a04cff,
+            #ed4bb5
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.board-section-header p {
+    max-width: 720px;
+
+    margin: 12px auto 0;
+
+    color: #bdb6ce;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   BOARD CONTAINER
+========================================================= */
+
+.board-container {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 1280px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   BOARD CARD
+========================================================= */
+
+.board-card {
+    position: relative;
+
+    min-height: 365px;
+
+    padding: 22px 24px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(
+        177,
+        117,
+        255,
+        0.20
+    );
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38, 27, 59, 0.92),
+            rgba(18, 14, 35, 0.94)
+        );
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.28);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.board-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #9b54ff,
+            #e346b3,
+            transparent
+        );
+
+    opacity: 0.65;
+}
+
+.board-card:hover {
+    transform: translateY(-10px);
+
+    border-color:
+        rgba(185, 110, 255, 0.55);
+
+    box-shadow:
+        0 25px 65px rgba(0, 0, 0, 0.4),
+        0 0 35px rgba(144, 65, 255, 0.12);
+}
+
+
+/* =========================================================
+   CENTER CARD
+========================================================= */
+
+.board-card-center {
+    transform: translateY(-12px);
+
+    border-color:
+        rgba(207, 111, 255, 0.38);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(48, 28, 67, 0.96),
+            rgba(19, 13, 39, 0.96)
+        );
+}
+
+.board-card-center:hover {
+    transform: translateY(-20px);
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.board-number {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    font-size: 55px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    color: rgba(
+        183,
+        123,
+        255,
+        0.08
+    );
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.board-photo {
+    position: relative;
+
+    width: 125px;
+    height: 125px;
+
+    margin-top: 8px;
+    margin-bottom: 18px;
+
+    padding: 5px;
+
+    box-sizing: border-box;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #914cff,
+            #e34cb7
+        );
+
+    box-shadow:
+        0 0 30px rgba(
+            151,
+            72,
+            255,
+            0.20
+        );
+}
+
+.board-photo::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(255,255,255,0.35);
+
+    pointer-events: none;
+}
+
+.board-photo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    background: #d9d9e3;
+}
+
+
+/* =========================================================
+   CARD INFORMATION
+========================================================= */
+
+.board-info {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+}
+
+.board-role {
+    display: inline-block;
+
+    padding: 6px 15px;
+
+    border-radius: 20px;
+
+    border: 1px solid
+        rgba(177, 101, 255, 0.4);
+
+    background:
+        rgba(143, 73, 255, 0.10);
+
+    color: #ca83ff;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.board-info h3 {
+    margin: 10px 0 6px;
+
+    font-size: 24px;
+
+    line-height: 1.1;
+
+    color: #ffffff;
+}
+
+.board-company {
+    margin: 0 0 7px;
+
+    color: #e5d9f6;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.board-short {
+    max-width: 280px;
+
+    min-height: 40px;
+
+    margin: 0 auto;
+
+    color: #aaa2bb;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   LEARN MORE BUTTON
+========================================================= */
+
+.learn-more-btn {
+    margin-top: 14px;
+
+    padding: 9px 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    border-radius: 30px;
+
+    border: 1px solid
+        rgba(178, 101, 255, 0.55);
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        all 0.3s ease;
+}
+
+.learn-more-btn span {
+    color: #d06aff;
+
+    font-size: 17px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.learn-more-btn:hover {
+    border-color: transparent;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8845ff,
+            #dd3eaa
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(186, 60, 255, 0.25);
+
+    transform: translateY(-2px);
+}
+
+.learn-more-btn:hover span {
+    transform:
+        translateX(5px);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   BOTTOM HIGHLIGHTS
+========================================================= */
+
+.board-highlights {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 1280px;
+
+    margin: 28px auto 0;
+
+    padding: 15px 24px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-radius: 15px;
+
+    border: 1px solid
+        rgba(176, 111, 255, 0.16);
+
+    background:
+        rgba(28, 20, 48, 0.65);
+}
+
+.board-highlight {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.highlight-icon {
+    font-size: 20px;
+
+    color: #b45cff;
+
+    text-shadow:
+        0 0 12px
+        rgba(180, 92, 255, 0.55);
+}
+
+.board-highlight strong {
+    display: block;
+
+    color: #e9e1f4;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.board-highlight small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #858096;
+
+    font-size: 10px;
+}
+
+.highlight-divider {
+    width: 1px;
+
+    height: 35px;
+
+    background:
+        rgba(255,255,255,0.12);
+}
+
+
+/* =========================================================
+   DETAIL MODAL OVERLAY
+========================================================= */
+
+.board-detail-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(3, 2, 14, 0.84);
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    z-index: 100000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.board-detail-overlay.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   DETAIL CARD
+========================================================= */
+
+.board-detail-card {
+    position: relative;
+
+    width: min(900px, 92vw);
+
+    max-height: 85vh;
+
+    display: grid;
+
+    grid-template-columns: 38% 62%;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border: 1px solid
+        rgba(181, 112, 255, 0.45);
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(150, 75, 255, 0.22),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #0b0820,
+            #18113a
+        );
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,0,0,0.65),
+
+        0 0 50px
+        rgba(145,70,255,0.15);
+
+    transform:
+        translateY(25px)
+        scale(0.88);
+
+    transition:
+        transform 0.4s
+        cubic-bezier(.17,.67,.3,1.2);
+}
+
+.board-detail-overlay.active
+.board-detail-card {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   DETAIL CLOSE
+========================================================= */
+
+.board-detail-close {
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(255,255,255,0.45);
+
+    background:
+        rgba(0,0,0,0.30);
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    line-height: 36px;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+        all 0.25s ease;
+}
+
+.board-detail-close:hover {
+    background: #dc3ea9;
+
+    transform:
+        rotate(90deg);
+}
+
+
+/* =========================================================
+   DETAIL IMAGE
+========================================================= */
+
+.board-detail-image {
+    position: relative;
+
+    min-height: 390px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 35px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 63, 255, 0.12),
+            rgba(221, 62, 170, 0.06)
+        );
+}
+
+.detail-image-glow {
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(145, 68, 255, 0.28);
+
+    filter: blur(65px);
+}
+
+.board-detail-image img {
+    position: relative;
+
+    z-index: 2;
+
+    width: 245px;
+    height: 315px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    border: 1px solid
+        rgba(198, 130, 255, 0.45);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.45);
+}
+
+
+/* =========================================================
+   DETAIL CONTENT
+   ONLY DETAILS WILL SCROLL
+========================================================= */
+
+.board-detail-content {
+    padding: 65px 45px 45px 20px;
+
+    box-sizing: border-box;
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(180, 100, 255, 0.65)
+        transparent;
+}
+
+
+/* Chrome / Edge / Safari */
+
+.board-detail-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.board-detail-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.board-detail-content::-webkit-scrollbar-thumb {
+    background:
+        rgba(180, 100, 255, 0.65);
+
+    border-radius: 20px;
+}
+
+.board-detail-content::-webkit-scrollbar-thumb:hover {
+    background:
+        rgba(220, 100, 220, 0.9);
+}
+
+
+/* =========================================================
+   DETAIL ROLE
+========================================================= */
+
+.board-detail-role {
+    width: fit-content;
+
+    padding: 7px 15px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(155, 75, 255, 0.12);
+
+    border: 1px solid
+        rgba(181, 103, 255, 0.45);
+
+    color: #cc82ff;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   DETAIL TITLE
+========================================================= */
+
+.board-detail-content h2 {
+    margin: 18px 0 7px;
+
+    color: #ffffff;
+
+    font-size: 42px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   DETAIL COMPANY
+========================================================= */
+
+.board-detail-content h4 {
+    margin: 0;
+
+    color: #b9aecb;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   DETAIL LINE
+========================================================= */
+
+.detail-line {
+    width: 65px;
+
+    height: 3px;
+
+    margin: 22px 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #954dff,
+            #e241ac
+        );
+}
+
+
+/* =========================================================
+   DETAIL DESCRIPTION
+========================================================= */
+
+.board-detail-content p {
+    margin: 0;
+
+    max-width: 470px;
+
+    color: #c5bdd2;
+
+    font-size: 14px;
+
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   DETAIL TAGS
+========================================================= */
+
+.detail-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 25px;
+}
+
+.detail-tags span {
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border: 1px solid
+        rgba(255,255,255,0.10);
+
+    color: #a99fb8;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .board-section {
+        min-height: auto;
+
+        padding:
+            70px 4% 55px;
+    }
+
+    .board-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .board-card-center {
+        transform: none;
+    }
+
+    .board-card-center:hover {
+        transform:
+            translateY(-10px);
+    }
+
+    .board-card:last-child {
+        grid-column:
+            1 / -1;
+
+        max-width: 500px;
+
+        width: 100%;
+
+        margin: 0 auto;
+    }
+
+    .board-highlights {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 20px;
+    }
+
+    .highlight-divider {
+        display: none;
+    }
+
+
+    /* Tablet popup */
+
+    .board-detail-card {
+        width: min(900px, 94vw);
+
+        max-height: 85vh;
+    }
+
+    .board-detail-content {
+        max-height: 85vh;
+
+        overflow-y: auto;
+    }
+
+    .board-detail-image img {
+        width: 210px;
+        height: 280px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .board-section {
+        min-height: auto;
+
+        padding:
+            60px 20px 45px;
+    }
+
+    .board-section-header {
+        margin-bottom: 35px;
+    }
+
+    .board-eyebrow {
+        font-size: 9px;
+
+        letter-spacing: 3px;
+    }
+
+    .board-section-header h2 {
+        font-size: 40px;
+    }
+
+    .board-section-header p {
+        font-size: 13px;
+    }
+
+    .board-container {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .board-card {
+        min-height: 430px;
+
+        padding: 25px 20px;
+    }
+
+    .board-card:last-child {
+        grid-column: auto;
+
+        max-width: none;
+    }
+
+    .board-photo {
+        width: 135px;
+        height: 135px;
+    }
+
+    .board-info h3 {
+        font-size: 25px;
+    }
+
+    .board-highlights {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 18px;
+
+        padding: 20px;
+    }
+
+    .board-highlight {
+        align-items: flex-start;
+    }
+
+    .board-highlight strong {
+        font-size: 10px;
+    }
+
+    .board-highlight small {
+        font-size: 9px;
+    }
+
+
+    /* ==========================================
+       MOBILE POPUP
+    ========================================== */
+
+    .board-detail-overlay {
+        padding: 15px;
+    }
+
+    .board-detail-card {
+        width: 94vw;
+
+        height: 90vh;
+
+        max-height: 90vh;
+
+        min-height: 0;
+
+        display: flex;
+
+        flex-direction: column;
+    }
+
+
+    /* Image stays fixed */
+
+    .board-detail-image {
+        min-height: 220px;
+
+        height: 220px;
+
+        flex-shrink: 0;
+
+        padding:
+            25px 25px 10px;
+    }
+
+    .board-detail-image img {
+        width: 150px;
+
+        height: 190px;
+    }
+
+
+    /* ONLY DETAILS SCROLL */
+
+    .board-detail-content {
+        flex: 1;
+
+        min-height: 0;
+
+        max-height: none;
+
+        padding:
+            20px 25px 30px;
+
+        overflow-y: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+        text-align: center;
+
+        align-items: center;
+    }
+
+    .board-detail-content h2 {
+        font-size: 30px;
+    }
+
+    .board-detail-content p {
+        font-size: 13px;
+
+        line-height: 1.75;
+    }
+
+    .detail-line {
+        margin:
+            18px auto;
+    }
+
+    .detail-tags {
+        justify-content: center;
+    }
+}
