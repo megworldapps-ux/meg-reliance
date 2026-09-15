@@ -625,7 +625,8 @@
   </section>
 
   <!-- ============ ENQUIRY CTA ============ -->
-  <section class="enquiry" id="contact">
+
+<section class="enquiry" id="contact">
 
     <div class="container enquiry-grid">
 
@@ -671,185 +672,221 @@
 
 
 
-            <!-- =================================================
-                 ENQUIRY FORM
-            ================================================== -->
+<!-- =================================================
+     ENQUIRY FORM - FORMSUBMIT
+================================================== -->
 
- <form
+<form
     class="enquiry-form"
     id="enquiryForm"
-    action="send-enquiry.php"
+    action="https://formsubmit.co/RAAchennai@gmail.com"
     method="POST"
 >
 
-                <!-- COURSE -->
+    <!-- =================================================
+         FORMSUBMIT SETTINGS
+    ================================================== -->
 
-                <label class="field">
+    <!-- Email subject -->
+    <input
+        type="hidden"
+        name="_subject"
+        value="New Course Enquiry"
+    >
 
-                    <span>
-                        Course
-                    </span>
+    <!-- Disable FormSubmit captcha -->
+    <input
+        type="hidden"
+        name="_captcha"
+        value="false"
+    >
 
-                    <select
-                        name="course"
-                        required
-                    >
-
-                        <option
-                            value=""
-                            disabled
-                            selected
-                        >
-                            Select a course
-                        </option>
-
-                        <option value="Master Program in Animation - AI Integrated">
-                            Master Program in Animation - AI Integrated
-                        </option>
-
-                        <option value="Advanced Program in 2D Animation - AI Integrated">
-                            Advanced Program in 2D Animation - AI Integrated
-                        </option>
-
-                        <option value="Advanced Program in 3D Animation - AI Integrated">
-                            Advanced Program in 3D Animation - AI Integrated
-                        </option>
-
-                        <option value="Master Program in Game Design & Development - AI Integrated">
-                            Master Program in Game Design & Development - AI Integrated
-                        </option>
-
-                    </select>
-
-                </label>
+    <!-- Email template -->
+    <input
+        type="hidden"
+        name="_template"
+        value="table"
+    >
 
 
+    <!-- =================================================
+         COURSE
+    ================================================== -->
 
-                <!-- NAME + EMAIL -->
+    <label class="field">
 
-                <div class="field-row">
+        <span>Course</span>
 
+        <select
+            name="course"
+            required
+        >
 
-                    <label class="field">
+            <option
+                value=""
+                disabled
+                selected
+            >
+                Select a course
+            </option>
 
-                        <span>
-                            Your name
-                        </span>
+            <option value="Master Program in Animation - AI Integrated">
+                Master Program in Animation - AI Integrated
+            </option>
 
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Full name"
-                            autocomplete="name"
-                            required
-                        >
+            <option value="Advanced Program in 2D Animation - AI Integrated">
+                Advanced Program in 2D Animation - AI Integrated
+            </option>
 
-                    </label>
+            <option value="Advanced Program in 3D Animation - AI Integrated">
+                Advanced Program in 3D Animation - AI Integrated
+            </option>
 
+            <option value="Master Program in Game Design & Development - AI Integrated">
+                Master Program in Game Design & Development - AI Integrated
+            </option>
 
+        </select>
 
-                    <label class="field">
-
-                        <span>
-                            Your email
-                        </span>
-
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="you@email.com"
-                            autocomplete="email"
-                            required
-                        >
-
-                    </label>
-
-                </div>
-
+    </label>
 
 
-                <!-- PHONE -->
+    <!-- =================================================
+         FIRST NAME + LAST NAME
+    ================================================== -->
 
-                <label class="field">
+    <div class="field-row">
 
-                    <span>
-                        Your phone
-                    </span>
+        <label class="field">
 
-                    <input
-                        type="tel"
-                        name="phone"
-                        placeholder="+91 00000 00000"
-                        autocomplete="tel"
-                        required
-                    >
+            <span>First name</span>
 
-                </label>
+            <input
+                type="text"
+                name="first_name"
+                placeholder="First name"
+                autocomplete="given-name"
+                required
+            >
+
+        </label>
 
 
+        <label class="field">
 
-                <!-- =================================================
-                     CAPTCHA
-                ================================================== -->
+            <span>Last name</span>
 
-<div class="captcha-box">
+            <input
+                type="text"
+                name="last_name"
+                placeholder="Last name"
+                autocomplete="family-name"
+                required
+            >
 
-    <div class="captcha-question">
-
-        <span>Security Check</span>
-
-        <strong id="captchaQuestion">Loading...</strong>
+        </label>
 
     </div>
 
-    <input
-        type="number"
-        id="captchaAnswer"
-        name="captcha"
-        placeholder="Enter answer"
-        required
-        autocomplete="off"
+
+    <!-- =================================================
+         EMAIL + PHONE
+    ================================================== -->
+
+    <div class="field-row">
+
+        <label class="field">
+
+            <span>Email address</span>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="you@email.com"
+                autocomplete="email"
+                required
+            >
+
+        </label>
+
+
+        <label class="field">
+
+            <span>Phone number</span>
+
+            <input
+                type="tel"
+                name="phone"
+                placeholder="+91 00000 00000"
+                autocomplete="tel"
+                required
+            >
+
+        </label>
+
+    </div>
+
+
+    <!-- =================================================
+         STATE + CITY
+    ================================================== -->
+
+    <div class="field-row">
+
+        <label class="field">
+
+            <span>State</span>
+
+            <input
+                type="text"
+                name="state"
+                placeholder="Enter your state"
+                autocomplete="address-level1"
+                required
+            >
+
+        </label>
+
+
+        <label class="field">
+
+            <span>City</span>
+
+            <input
+                type="text"
+                name="city"
+                placeholder="Enter your city"
+                autocomplete="address-level2"
+                required
+            >
+
+        </label>
+
+    </div>
+
+
+    <!-- =================================================
+         SUBMIT BUTTON
+    ================================================== -->
+
+    <button
+        type="submit"
+        class="btn btn-primary btn-lg btn-block"
+        id="submitEnquiryBtn"
     >
+        Submit enquiry
+    </button>
 
-    <input
-        type="hidden"
-        id="captchaToken"
-        name="captcha_token"
-    >
-
-</div>
+</form>
 
 
-
-                <!-- SUBMIT -->
-
-               <button
-    type="submit"
-    class="btn btn-primary btn-lg btn-block"
-    id="submitEnquiryBtn"
->
-    Submit enquiry
-</button>
-
-
-                <!-- FORM MESSAGE -->
-
-                <p
-                    class="form-note"
-                    id="formNote"
-                    role="status"
-                    aria-live="polite"
-                ></p>
-
-
-            </form>
 
         </div>
 
     </div>
 
 </section>
- 
+
 
   <!-- ============ TESTIMONIALS ============ -->
   <section class="testimonials" id="about">
@@ -861,7 +898,7 @@
         <blockquote class="testimonial-card">
           <p>“The mentors pushed me to rebuild my portfolio three times — worth every round. I animated my first short within a year.”</p>
           <footer>
-            <img src="public/men1.png" alt="Portrait of Arjun K.">
+            <img src="public/men1.webp" alt="Portrait of Arjun K.">
             <div>
               <cite>Arjun K.</cite>
               <span>3D Animator</span>
@@ -872,7 +909,7 @@
         <blockquote class="testimonial-card">
           <p>“The VFX track is genuinely industry-paced. Placement support helped me land a compositing role before graduation.”</p>
           <footer>
-            <img src="public/women.png" alt="Portrait of Sneha R.">
+            <img src="public/women.webp" alt="Portrait of Sneha R.">
             <div>
               <cite>Sneha R.</cite>
               <span>VFX Artist</span>
@@ -883,7 +920,7 @@
         <blockquote class="testimonial-card">
           <p>“Hands-on studio projects gave me the confidence to walk into a gaming studio and actually contribute from week one.”</p>
           <footer>
-            <img src="public/men2.png" alt="Portrait of Vikram S.">
+            <img src="public/men2.webp" alt="Portrait of Vikram S.">
             <div>
               <cite>Vikram S.</cite>
               <span>Game Designer</span>
@@ -1037,12 +1074,12 @@
 
       <h4>Contact Us</h4>
 
-      <p>
-        ☎ &nbsp; +91 98765 43210
+       <p>
+        ☎ &nbsp; +91 7305982803
       </p>
 
       <p>
-        ✉ &nbsp; info@relianceacademy.com
+        ✉ &nbsp; RAAchennai@gmail.com
       </p>
 
       <p>
@@ -1073,7 +1110,7 @@ Map of Reliance Animation Academy Velachery Chennai
 ========================= -->
 
 <a
-    href="https://wa.me/919XXXXXXXXX"
+    href="https://wa.me/7305982803"
     class="floating-whatsapp"
     target="_blank"
     rel="noopener noreferrer"
@@ -1094,237 +1131,6 @@ Map of Reliance Animation Academy Velachery Chennai
         />
     </svg>
 </a>
-<script>
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const form = document.getElementById("enquiryForm");
-
-    const question = document.getElementById("captchaQuestion");
-
-    const answerInput = document.getElementById("captchaAnswer");
-
-    const tokenInput = document.getElementById("captchaToken");
-
-    const formNote = document.getElementById("formNote");
-
-    const submitButton =
-        document.getElementById("submitEnquiryBtn");
-
-
-    let correctAnswer = 0;
-
-
-    /* =========================================
-       GENERATE CAPTCHA
-    ========================================= */
-
-    function generateCaptcha() {
-
-        const num1 =
-            Math.floor(Math.random() * 10) + 1;
-
-        const num2 =
-            Math.floor(Math.random() * 10) + 1;
-
-
-        const useAddition =
-            Math.random() > 0.5;
-
-
-        if (useAddition) {
-
-            correctAnswer =
-                num1 + num2;
-
-            question.textContent =
-                `${num1} + ${num2} = ?`;
-
-        } else {
-
-            const bigger =
-                Math.max(num1, num2);
-
-            const smaller =
-                Math.min(num1, num2);
-
-            correctAnswer =
-                bigger - smaller;
-
-            question.textContent =
-                `${bigger} − ${smaller} = ?`;
-
-        }
-
-
-        tokenInput.value =
-            correctAnswer;
-
-        answerInput.value = "";
-
-    }
-
-
-    /* =========================================
-       FIRST CAPTCHA
-    ========================================= */
-
-    generateCaptcha();
-
-
-    /* =========================================
-       FORM SUBMIT
-    ========================================= */
-
-    form.addEventListener("submit", async function (event) {
-
-        event.preventDefault();
-
-
-        /* CAPTCHA CHECK */
-
-        const enteredAnswer =
-            Number(answerInput.value);
-
-
-        if (
-            answerInput.value.trim() === "" ||
-            enteredAnswer !== correctAnswer
-        ) {
-
-            formNote.textContent =
-                "❌ Incorrect CAPTCHA. Please try again.";
-
-            formNote.className =
-                "form-note error";
-
-
-            generateCaptcha();
-
-            answerInput.focus();
-
-            return;
-
-        }
-
-
-        /* =====================================
-           BUTTON LOADING
-        ===================================== */
-
-        submitButton.disabled = true;
-
-        submitButton.textContent = "Sending...";
-
-        formNote.textContent = "";
-
-
-        /* =====================================
-           SEND FORM TO PHP
-        ===================================== */
-
-        const formData =
-            new FormData(form);
-
-
-        try {
-
-            const response =
-                await fetch(
-                    "send-enquiry.php",
-                    {
-                        method: "POST",
-                        body: formData
-                    }
-                );
-
-
-            const result =
-                await response.text();
-
-
-            console.log(
-                "PHP Response:",
-                result
-            );
-
-
-            /* =================================
-               SUCCESS
-            ================================= */
-
-            if (
-                result.trim() === "success"
-            ) {
-
-                formNote.textContent =
-                    "✅ Enquiry sent successfully! We will contact you shortly.";
-
-                formNote.className =
-                    "form-note success";
-
-
-                form.reset();
-
-
-                generateCaptcha();
-
-            }
-
-
-            /* =================================
-               ERROR
-            ================================= */
-
-            else {
-
-                formNote.textContent =
-                    "❌ Unable to send enquiry. Please try again.";
-
-                formNote.className =
-                    "form-note error";
-
-
-                generateCaptcha();
-
-            }
-
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Enquiry error:",
-                error
-            );
-
-
-            formNote.textContent =
-                "❌ Something went wrong. Please try again.";
-
-            formNote.className =
-                "form-note error";
-
-
-            generateCaptcha();
-
-        }
-
-
-        /* =====================================
-           RESET BUTTON
-        ===================================== */
-
-        submitButton.disabled = false;
-
-        submitButton.textContent =
-            "Submit enquiry";
-
-    });
-
-});
-
-</script>
 </body>
 </html>

@@ -1,101 +1,582 @@
 /* ==========================================================
-   Hero Scroll Timeline — isolated Hero-only JavaScript
-   The video never plays. Scroll position controls currentTime.
+   WEBSITE JAVASCRIPT
    ========================================================== */
+
+
+/* ==========================================================
+   1. HERO SCROLL TIMELINE
+   ----------------------------------------------------------
+   The video never plays automatically.
+   Scroll position controls video.currentTime.
+   ========================================================== */
+
 (function () {
-  'use strict';
 
-  function initHeroScroll() {
-    const wrapper = document.getElementById('heroScrollWrapper');
-    const video = document.getElementById('hero-scroll-video');
+    'use strict';
 
-    if (!wrapper || !video) return;
 
-    let duration = 0;
-    let framePending = false;
-    let lastTargetTime = -1;
-    let metadataReady = false;
+    function initHeroScroll() {
 
-    // Never allow normal playback. This Hero is scroll-only.
-    video.autoplay = false;
-    video.controls = false;
-    video.muted = true;
-    video.pause();
+        const wrapper = document.getElementById('heroScrollWrapper');
+        const video = document.getElementById('hero-scroll-video');
 
-    function clamp(value, min, max) {
-      return Math.min(Math.max(value, min), max);
-    }
 
-    function getProgress() {
-      const rect = wrapper.getBoundingClientRect();
-      const scrollDistance = wrapper.offsetHeight - window.innerHeight;
-
-      if (scrollDistance <= 0) return 0;
-
-      return clamp(-rect.top / scrollDistance, 0, 1);
-    }
-
-    function updateVideoFrame() {
-      framePending = false;
-
-      if (!metadataReady || !duration || !Number.isFinite(duration)) return;
-
-      const progress = getProgress();
-      const targetTime = clamp(progress * duration, 0, Math.max(0, duration - 0.001));
-
-      // Avoid redundant seeks while the user is not moving the page.
-      if (Math.abs(targetTime - lastTargetTime) < 0.004) return;
-
-      lastTargetTime = targetTime;
-
-      // Scroll is the only playback control. No video.play() is ever called.
-      if (Math.abs(video.currentTime - targetTime) > 0.001) {
-        try {
-          video.currentTime = targetTime;
-        } catch (error) {
-          // Some browsers can briefly reject a seek while media is preparing.
+        // Stop if Hero elements don't exist
+        if (!wrapper || !video) {
+            return;
         }
-      }
+
+
+        let duration = 0;
+        let framePending = false;
+        let lastTargetTime = -1;
+        let metadataReady = false;
+
+
+        /* --------------------------------------------------
+           Never allow normal video playback
+        -------------------------------------------------- */
+
+        video.autoplay = false;
+        video.controls = false;
+        video.muted = true;
+        video.pause();
+
+
+        /* --------------------------------------------------
+           Clamp value
+        -------------------------------------------------- */
+
+        function clamp(value, min, max) {
+
+            return Math.min(
+                Math.max(value, min),
+                max
+            );
+
+        }
+
+
+        /* --------------------------------------------------
+           Calculate scroll progress
+        -------------------------------------------------- */
+
+        function getProgress() {
+
+            const rect = wrapper.getBoundingClientRect();
+
+            const scrollDistance =
+                wrapper.offsetHeight - window.innerHeight;
+
+
+            if (scrollDistance <= 0) {
+                return 0;
+            }
+
+
+            return clamp(
+                -rect.top / scrollDistance,
+                0,
+                1
+            );
+
+        }
+
+
+        /* --------------------------------------------------
+           Update video frame
+        -------------------------------------------------- */
+
+        function updateVideoFrame() {
+
+            framePending = false;
+
+
+            if (
+                !metadataReady ||
+                !duration ||
+                !Number.isFinite(duration)
+            ) {
+
+                return;
+
+            }
+
+
+            const progress = getProgress();
+
+
+            const targetTime = clamp(
+                progress * duration,
+                0,
+                Math.max(
+                    0,
+                    duration - 0.001
+                )
+            );
+
+
+            // Avoid unnecessary seeking
+            if (
+                Math.abs(
+                    targetTime - lastTargetTime
+                ) < 0.004
+            ) {
+
+                return;
+
+            }
+
+
+            lastTargetTime = targetTime;
+
+
+            /* --------------------------------------------------
+               Scroll is the only playback control
+            -------------------------------------------------- */
+
+            if (
+                Math.abs(
+                    video.currentTime - targetTime
+                ) > 0.001
+            ) {
+
+                try {
+
+                    video.currentTime = targetTime;
+
+                } catch (error) {
+
+                    // Browser may temporarily reject seeking
+                    // while media is preparing.
+
+                }
+
+            }
+
+        }
+
+
+        /* --------------------------------------------------
+           Request animation frame
+        -------------------------------------------------- */
+
+        function requestFrameUpdate() {
+
+            if (framePending) {
+                return;
+            }
+
+
+            framePending = true;
+
+
+            window.requestAnimationFrame(
+                updateVideoFrame
+            );
+
+        }
+
+
+        /* --------------------------------------------------
+           Video metadata loaded
+        -------------------------------------------------- */
+
+        function onMetadataLoaded() {
+
+            if (
+                !Number.isFinite(video.duration) ||
+                video.duration <= 0
+            ) {
+
+                return;
+
+            }
+
+
+            duration = video.duration;
+
+            metadataReady = true;
+
+
+            video.pause();
+
+            video.currentTime = 0;
+
+            lastTargetTime = 0;
+
+
+            requestFrameUpdate();
+
+        }
+
+
+        /* --------------------------------------------------
+           Check video metadata
+        -------------------------------------------------- */
+
+        if (video.readyState >= 1) {
+
+            onMetadataLoaded();
+
+        } else {
+
+            video.addEventListener(
+                'loadedmetadata',
+                onMetadataLoaded,
+                {
+                    once: true
+                }
+            );
+
+        }
+
+
+        /* --------------------------------------------------
+           Scroll event
+        -------------------------------------------------- */
+
+        window.addEventListener(
+            'scroll',
+            requestFrameUpdate,
+            {
+                passive: true
+            }
+        );
+
+
+        /* --------------------------------------------------
+           Resize event
+        -------------------------------------------------- */
+
+        window.addEventListener(
+            'resize',
+            requestFrameUpdate,
+            {
+                passive: true
+            }
+        );
+
+
+        /* --------------------------------------------------
+           If browser tries to play video,
+           immediately pause it.
+        -------------------------------------------------- */
+
+        video.addEventListener(
+            'play',
+            function () {
+
+                video.pause();
+
+            }
+        );
+
+
+        /* --------------------------------------------------
+           Keep initial frame ready
+        -------------------------------------------------- */
+
+        video.addEventListener(
+            'loadeddata',
+            requestFrameUpdate,
+            {
+                once: true
+            }
+        );
+
     }
 
-    function requestFrameUpdate() {
-      if (framePending) return;
-      framePending = true;
-      window.requestAnimationFrame(updateVideoFrame);
-    }
 
-    function onMetadataLoaded() {
-      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+    /* ------------------------------------------------------
+       Initialize Hero
+    ------------------------------------------------------ */
 
-      duration = video.duration;
-      metadataReady = true;
-      video.pause();
-      video.currentTime = 0;
-      lastTargetTime = 0;
-      requestFrameUpdate();
-    }
+    if (
+        document.readyState === 'loading'
+    ) {
 
-    if (video.readyState >= 1) {
-      onMetadataLoaded();
+        document.addEventListener(
+            'DOMContentLoaded',
+            initHeroScroll,
+            {
+                once: true
+            }
+        );
+
     } else {
-      video.addEventListener('loadedmetadata', onMetadataLoaded, { once: true });
+
+        initHeroScroll();
+
     }
 
-    window.addEventListener('scroll', requestFrameUpdate, { passive: true });
-    window.addEventListener('resize', requestFrameUpdate, { passive: true });
+})();
 
-    // If a browser attempts to resume media for any reason, immediately pause it.
-    video.addEventListener('play', function () {
-      video.pause();
-    });
 
-    // Keep the initial frame ready if metadata arrives after the first paint.
-    video.addEventListener('loadeddata', requestFrameUpdate, { once: true });
-  }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroScroll, { once: true });
-  } else {
-    initHeroScroll();
-  }
+/* ==========================================================
+   2. ENQUIRY FORM - FORMSUBMIT
+   ----------------------------------------------------------
+   Visitor submits form
+          ↓
+   JavaScript sends form to FormSubmit
+          ↓
+   FormSubmit sends email
+          ↓
+   vickychoky006@gmail.com
+   ========================================================== */
+
+(function () {
+
+    'use strict';
+
+
+    function initEnquiryForm() {
+
+        const form =
+            document.getElementById('enquiryForm');
+
+
+        const submitButton =
+            document.getElementById('submitEnquiryBtn');
+
+
+        /*
+         * The message element is optional.
+         * Your new HTML doesn't require it,
+         * but if it exists, we'll use it.
+         */
+        const formNote =
+            document.getElementById('formNote');
+
+
+        // Stop if form doesn't exist
+        if (!form) {
+            return;
+        }
+
+
+        /* --------------------------------------------------
+           Form submit
+        -------------------------------------------------- */
+
+        form.addEventListener(
+            'submit',
+            async function (event) {
+
+                /*
+                 * IMPORTANT:
+                 * Prevent normal browser navigation.
+                 *
+                 * Instead, we submit the form using AJAX
+                 * to FormSubmit.
+                 */
+
+                event.preventDefault();
+
+
+                /* --------------------------------------------------
+                   Get form values
+                -------------------------------------------------- */
+
+                const firstNameInput =
+                    form.querySelector(
+                        '[name="first_name"]'
+                    );
+
+
+                const firstName =
+                    firstNameInput
+                        ? firstNameInput.value.trim()
+                        : '';
+
+
+                /* --------------------------------------------------
+                   Button loading state
+                -------------------------------------------------- */
+
+                if (submitButton) {
+
+                    submitButton.disabled = true;
+
+                    submitButton.textContent =
+                        'Sending...';
+
+                }
+
+
+                /* --------------------------------------------------
+                   Show temporary message
+                -------------------------------------------------- */
+
+                if (formNote) {
+
+                    formNote.textContent =
+                        'Sending your enquiry...';
+
+                    formNote.style.display =
+                        'block';
+
+                }
+
+
+                try {
+
+                    /* ------------------------------------------------
+                       Create FormData
+                    ------------------------------------------------ */
+
+                    const formData =
+                        new FormData(form);
+
+
+                    /* ------------------------------------------------
+                       Send to FormSubmit AJAX endpoint
+                    ------------------------------------------------ */
+
+                    const response =
+                        await fetch(
+                            'https://formsubmit.co/ajax/vickychoky006@gmail.com',
+                            {
+                                method: 'POST',
+
+                                body: formData,
+
+                                headers: {
+                                    'Accept':
+                                        'application/json'
+                                }
+                            }
+                        );
+
+
+                    /* ------------------------------------------------
+                       Read response
+                    ------------------------------------------------ */
+
+                    const result =
+                        await response.json();
+
+
+                    /* ------------------------------------------------
+                       Check FormSubmit response
+                    ------------------------------------------------ */
+
+                    if (
+                        response.ok &&
+                        result.success
+                    ) {
+
+                        /* --------------------------------------------
+                           Success
+                        -------------------------------------------- */
+
+                        if (formNote) {
+
+                            formNote.textContent =
+                                `Thanks, ${firstName || 'there'}! An advisor will reach out shortly.`;
+
+                            formNote.style.display =
+                                'block';
+
+                        }
+
+
+                        /* --------------------------------------------
+                           Reset form
+                        -------------------------------------------- */
+
+                        form.reset();
+
+
+                        /* --------------------------------------------
+                           Restore button
+                        -------------------------------------------- */
+
+                        if (submitButton) {
+
+                            submitButton.disabled = false;
+
+                            submitButton.textContent =
+                                'Submit enquiry';
+
+                        }
+
+
+                    } else {
+
+                        throw new Error(
+                            result.message ||
+                            'Form submission failed.'
+                        );
+
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        'FormSubmit Error:',
+                        error
+                    );
+
+
+                    /* ------------------------------------------------
+                       Error message
+                    ------------------------------------------------ */
+
+                    if (formNote) {
+
+                        formNote.textContent =
+                            'Sorry, your enquiry could not be sent. Please try again.';
+
+                        formNote.style.display =
+                            'block';
+
+                    }
+
+
+                    /* ------------------------------------------------
+                       Restore button
+                    ------------------------------------------------ */
+
+                    if (submitButton) {
+
+                        submitButton.disabled = false;
+
+                        submitButton.textContent =
+                            'Submit enquiry';
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ------------------------------------------------------
+       Initialize enquiry form
+    ------------------------------------------------------ */
+
+    if (
+        document.readyState === 'loading'
+    ) {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            initEnquiryForm,
+            {
+                once: true
+            }
+        );
+
+    } else {
+
+        initEnquiryForm();
+
+    }
+
 })();
