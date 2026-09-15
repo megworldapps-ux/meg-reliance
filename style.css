@@ -3948,3 +3948,767 @@ html {
     }
 
 }
+/* =========================================================
+   ADMISSIONS POPUP OVERLAY
+========================================================= */
+
+.admission-popup-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(3, 3, 15, 0.78);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+}
+
+
+/* =========================================================
+   POPUP BOX
+========================================================= */
+
+.admission-popup {
+    position: relative;
+
+    width: min(1100px, 90vw);
+    min-height: 650px;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(117, 54, 255, 0.35),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #080622 0%,
+            #151044 48%,
+            #090722 100%
+        );
+
+    border: 2px solid rgba(160, 120, 255, 0.8);
+
+    box-shadow:
+        0 0 20px rgba(110, 70, 255, 0.7),
+        0 0 60px rgba(224, 47, 255, 0.25),
+        inset 0 0 50px rgba(80, 40, 255, 0.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: popupOpen 0.65s cubic-bezier(.17,.67,.3,1.25);
+}
+
+
+/* =========================================================
+   POPUP ENTRY ANIMATION
+========================================================= */
+
+@keyframes popupOpen {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.75);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.admission-popup-close {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255, 255, 255, 0.9);
+
+    background: rgba(10, 5, 30, 0.75);
+
+    color: #ffffff;
+
+    font-size: 34px;
+    font-weight: 300;
+
+    line-height: 40px;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.admission-popup-close:hover {
+    transform: rotate(90deg) scale(1.08);
+
+    background: #e72c7f;
+
+    box-shadow:
+        0 0 15px rgba(255, 50, 170, 0.8);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.popup-main-content {
+    position: relative;
+
+    width: 58%;
+
+    text-align: center;
+
+    z-index: 5;
+
+    padding: 35px 20px 25px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.popup-logo {
+    margin-bottom: 8px;
+}
+
+
+.popup-logo img {
+    width: 180px;
+    max-width: 70%;
+
+    height: auto;
+
+    display: inline-block;
+}
+
+
+/* =========================================================
+   TOP TEXT
+========================================================= */
+
+.popup-top-text {
+    margin-bottom: 15px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   MAIN HEADING
+========================================================= */
+
+.popup-heading {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    line-height: 0.9;
+
+    margin-bottom: 28px;
+}
+
+
+.popup-heading span {
+    font-size: clamp(48px, 6vw, 82px);
+
+    font-weight: 900;
+
+    letter-spacing: -3px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 4px 0 #6832b8,
+        0 8px 18px rgba(0, 0, 0, 0.5);
+}
+
+
+.popup-heading strong {
+    font-size: clamp(65px, 8vw, 105px);
+
+    font-weight: 1000;
+
+    letter-spacing: -4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffef62 0%,
+            #ff9b30 45%,
+            #f02c91 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(0 5px 0 #a32174)
+        drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+
+/* =========================================================
+   SPONSORSHIP BOX
+========================================================= */
+
+.popup-sponsorship {
+    position: relative;
+
+    width: min(520px, 100%);
+
+    margin: 0 auto 20px;
+
+    padding: 16px 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffd95a,
+            #f5a928
+        );
+
+    border: 3px solid #ffdb63;
+
+    box-shadow:
+        0 6px 0 #a75a19,
+        0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+
+.popup-sponsorship span {
+    font-size: 38px;
+}
+
+
+.popup-sponsorship div {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+
+
+.popup-sponsorship small {
+    color: #17205a;
+
+    font-size: 21px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.popup-sponsorship strong {
+    color: #e32332;
+
+    font-size: 30px;
+    font-weight: 1000;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   TAGLINE
+========================================================= */
+
+.popup-tagline {
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.popup-features {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+.popup-feature {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+.popup-feature span {
+    font-size: 30px;
+
+    color: #ff63d7;
+
+    text-shadow:
+        0 0 10px #ff45d0;
+}
+
+
+.popup-feature p {
+    margin: 0;
+
+    text-align: left;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   CHARACTERS
+========================================================= */
+
+.popup-character {
+    position: absolute;
+
+    bottom: 0;
+
+    z-index: 7;
+
+    pointer-events: none;
+}
+
+
+.popup-character img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 12px 15px rgba(0, 0, 0, 0.45))
+        drop-shadow(0 0 12px rgba(255, 70, 220, 0.2));
+}
+
+
+/* LEFT - LITTLE SINGHAM */
+
+.popup-singham {
+    left: 15px;
+
+    width: 27%;
+
+    max-width: 290px;
+
+    animation: characterFloatLeft 3s ease-in-out infinite;
+}
+
+
+@keyframes characterFloatLeft {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* RIGHT - LITTLE KRISHNA */
+
+.popup-krishna {
+    right: 15px;
+
+    width: 25%;
+
+    max-width: 280px;
+
+    animation: characterFloatRight 3.2s ease-in-out infinite;
+}
+
+
+@keyframes characterFloatRight {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* =========================================================
+   SIDE HANDWRITTEN TEXT
+========================================================= */
+
+.popup-side-text {
+    position: absolute;
+
+    color: #ff8ee8;
+
+    font-size: 15px;
+
+    line-height: 1.45;
+
+    font-style: italic;
+
+    font-weight: 600;
+
+    z-index: 8;
+
+    text-shadow:
+        0 0 8px rgba(255, 70, 220, 0.6);
+}
+
+
+.popup-left-text {
+    left: 32px;
+
+    bottom: 150px;
+
+    transform: rotate(-8deg);
+}
+
+
+.popup-right-text {
+    right: 30px;
+
+    top: 150px;
+
+    transform: rotate(5deg);
+}
+
+
+/* =========================================================
+   DECORATIVE GLOW
+========================================================= */
+
+.admission-popup::before {
+    content: "";
+
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    left: 50%;
+    top: 35%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(217, 49, 255, 0.25),
+            transparent 65%
+        );
+
+    pointer-events: none;
+}
+
+
+.admission-popup::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   POPUP CLOSE STATE
+========================================================= */
+
+.admission-popup-overlay.popup-closed {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.admission-popup-overlay.popup-closed .admission-popup {
+    transform: scale(0.85);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .admission-popup {
+        width: 94vw;
+
+        min-height: 520px;
+    }
+
+    .popup-main-content {
+        width: 68%;
+    }
+
+    .popup-heading span {
+        font-size: 45px;
+    }
+
+    .popup-heading strong {
+        font-size: 65px;
+    }
+
+    .popup-singham {
+        width: 25%;
+    }
+
+    .popup-krishna {
+        width: 24%;
+    }
+
+    .popup-side-text {
+        display: none;
+    }
+
+    .popup-features {
+        gap: 12px;
+    }
+
+    .popup-feature p {
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    /* =========================================================
+   CENTER ADMISSION POPUP
+========================================================= */
+
+.admission-popup {
+    position: relative;
+
+    /* 4 SIDE SPACE */
+    width: 82vw;
+    max-width: 1000px;
+
+    height: 78vh;
+    max-height: 620px;
+
+    min-height: 0;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(117, 54, 255, 0.35),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #080622 0%,
+            #151044 48%,
+            #090722 100%
+        );
+
+    border: 2px solid rgba(160, 120, 255, 0.8);
+
+    box-shadow:
+        0 0 20px rgba(110, 70, 255, 0.7),
+        0 0 60px rgba(224, 47, 255, 0.25),
+        inset 0 0 50px rgba(80, 40, 255, 0.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: popupOpen 0.65s cubic-bezier(.17,.67,.3,1.25);
+}
+    .admission-popup-close {
+        width: 38px;
+        height: 38px;
+
+        top: 10px;
+        right: 10px;
+
+        font-size: 27px;
+
+        line-height: 32px;
+    }
+
+    .popup-main-content {
+        width: 100%;
+
+        padding:
+            45px 15px 20px;
+    }
+
+    .popup-logo img {
+        width: 130px;
+    }
+
+    .popup-top-text {
+        font-size: 8px;
+
+        letter-spacing: 2px;
+    }
+
+    .popup-heading {
+        margin-bottom: 20px;
+    }
+
+    .popup-heading span {
+        font-size: 34px;
+
+        letter-spacing: -1px;
+    }
+
+    .popup-heading strong {
+        font-size: 52px;
+
+        letter-spacing: -2px;
+    }
+
+    .popup-sponsorship {
+        width: 82%;
+
+        padding: 10px 12px;
+    }
+
+    .popup-sponsorship span {
+        font-size: 25px;
+    }
+
+    .popup-sponsorship small {
+        font-size: 14px;
+    }
+
+    .popup-sponsorship strong {
+        font-size: 21px;
+    }
+
+    .popup-tagline {
+        font-size: 9px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 20px;
+    }
+
+    .popup-features {
+        gap: 5px;
+    }
+
+    .popup-feature {
+        gap: 3px;
+    }
+
+    .popup-feature span {
+        font-size: 18px;
+    }
+
+    .popup-feature p {
+        font-size: 8px;
+    }
+
+    .popup-singham {
+        left: -10px;
+
+        width: 29%;
+    }
+
+    .popup-krishna {
+        right: -10px;
+
+        width: 28%;
+    }
+}
