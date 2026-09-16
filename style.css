@@ -3994,7 +3994,7 @@ html {
 .admission-popup {
     position: absolute;
 
-    top: 105px;
+    top: 70px;
     right: 38px;
 
     width: 310px;
@@ -4267,8 +4267,9 @@ html {
 .popup-sponsorship small {
     color: #17205a;
 
-    font-size: 11px;
+    font-size: 15px;
     font-weight: 900;
+    text-transform: uppercase;
 
     letter-spacing: 0.5px;
 }
@@ -4852,4 +4853,1265 @@ html {
 
         max-width: 75px;
     }
+}
+/* =========================================================
+   B.VOC NEW PROGRAM LAUNCH POPUP
+========================================================= */
+
+
+/* =========================================================
+   POPUP BACKDROP
+========================================================= */
+
+.bvoc-popup-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 999999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background:
+        rgba(2, 3, 18, 0.82);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+
+}
+
+
+/* =========================================================
+   SHOW POPUP
+========================================================= */
+
+.bvoc-popup-overlay.bvoc-show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+/* =========================================================
+   MAIN POPUP
+========================================================= */
+
+.bvoc-popup {
+
+    position: relative;
+
+    width: min(900px, 92vw);
+
+    height: min(560px, 88vh);
+
+    min-height: 480px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    border: 2px solid
+        rgba(161, 91, 255, 0.9);
+
+    background:
+        #06082b;
+
+    box-shadow:
+
+        0 0 20px
+        rgba(139, 68, 255, 0.75),
+
+        0 0 55px
+        rgba(200, 40, 255, 0.35),
+
+        0 30px 90px
+        rgba(0, 0, 0, 0.65);
+
+    transform:
+        scale(0.86)
+        translateY(25px);
+
+    transition:
+        transform 0.45s
+        cubic-bezier(.17,.67,.24,1.2);
+
+}
+
+
+/* POPUP OPEN ANIMATION */
+
+.bvoc-popup-overlay.bvoc-show
+.bvoc-popup {
+
+    transform:
+        scale(1)
+        translateY(0);
+
+}
+
+
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
+
+.bvoc-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background-image:
+        url("public/BVoc.webp");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+
+    background-repeat:
+        no-repeat;
+
+    transform:
+        scale(1.01);
+
+}
+
+
+/* =========================================================
+   DARK GRADIENT OVERLAY
+========================================================= */
+
+.bvoc-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(3, 5, 30, 0.25) 0%,
+            rgba(4, 5, 28, 0.45) 35%,
+            rgba(5, 4, 30, 0.88) 100%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(5, 5, 25, 0.10),
+            rgba(5, 4, 25, 0.55)
+        );
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.bvoc-close {
+
+    position: absolute;
+
+    top: 14px;
+    right: 15px;
+
+    z-index: 30;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 2px solid
+        rgba(255,255,255,0.9);
+
+    background:
+        rgba(7, 6, 25, 0.72);
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.bvoc-close:hover {
+
+    background:
+        #e72c8d;
+
+    border-color:
+        #ffffff;
+
+    transform:
+        rotate(90deg)
+        scale(1.08);
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 40, 170, 0.75);
+
+}
+
+
+/* =========================================================
+   NEW BADGE
+========================================================= */
+
+.bvoc-new-badge {
+
+    position: absolute;
+
+    top: 0;
+    left: 28px;
+
+    z-index: 15;
+
+    width: 125px;
+
+    padding:
+        15px 15px 17px;
+
+    box-sizing: border-box;
+
+    text-align: left;
+
+    color: #ffffff;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #ff2849,
+            #d81370
+        );
+
+    border-radius:
+        0 0 18px 18px;
+
+    box-shadow:
+
+        0 10px 28px
+        rgba(245, 30, 110, 0.42);
+
+}
+
+
+.bvoc-new-badge span {
+
+    display: block;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+}
+
+
+.bvoc-new-badge small {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1.15;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+/* =========================================================
+   SCRIPT TEXT
+========================================================= */
+
+.bvoc-script {
+
+    position: absolute;
+
+    top: 298px;
+    left: 105px;
+
+    z-index: 10;
+
+    color: #ffffff;
+
+    font-family:
+        cursive;
+
+    font-size: 40px;
+
+    line-height: 1.05;
+
+    transform:
+        rotate(-5deg);
+
+    text-shadow:
+        0 3px 10px
+        rgba(0,0,0,0.65);
+
+}
+
+
+.bvoc-script strong {
+
+    color: #ffd34f;
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.bvoc-content {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: 62%;
+
+    height: 100%;
+
+    margin-left: auto;
+
+    box-sizing: border-box;
+
+    padding:
+        48px 30px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   INTRODUCING
+========================================================= */
+
+.bvoc-introducing {
+
+    color: #ffffff;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 7px;
+
+    margin-bottom: 4px;
+
+}
+
+
+/* =========================================================
+   B.VOC TITLE
+========================================================= */
+
+.bvoc-title {
+
+    margin: 0;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: clamp(
+        70px,
+        8vw,
+        105px
+    );
+
+    line-height: 0.85;
+
+    font-weight: 800;
+
+    letter-spacing: -4px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            #fffef7 0%,
+            #ffe07b 43%,
+            #d68c14 100%
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    color:
+        transparent;
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(255, 183, 30, 0.35)
+        );
+
+}
+
+
+/* =========================================================
+   AI INTEGRATED
+========================================================= */
+
+.bvoc-ai {
+
+    margin-top: 7px;
+
+    color: #ffffff;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 23px;
+
+    font-weight: 800;
+
+    letter-spacing: 6px;
+
+}
+
+
+/* =========================================================
+   GLOW LINE
+========================================================= */
+
+.bvoc-line {
+
+    width: 230px;
+
+    height: 2px;
+
+    margin:
+        9px 0 10px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #8e55ff,
+            #ff36a8,
+            transparent
+        );
+
+    box-shadow:
+
+        0 0 12px
+        rgba(196, 56, 255, 0.8);
+
+}
+
+
+/* =========================================================
+   UGC RECOGNISED
+========================================================= */
+
+.bvoc-recognised {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color:
+        #ffd452;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.bvoc-recognised i {
+
+    font-size: 17px;
+
+}
+
+
+/* =========================================================
+   CERTIFICATION
+========================================================= */
+
+.bvoc-certification {
+
+    margin-top: 3px;
+    margin-bottom: 15px;
+
+    color: #ffffff;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================================================
+   FEATURE GRID
+========================================================= */
+
+.bvoc-features {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 6px;
+
+}
+
+
+/* =========================================================
+   FEATURE CARD
+========================================================= */
+
+.bvoc-feature {
+
+    min-height: 92px;
+
+    padding:
+        8px 5px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(27, 39, 78, 0.82),
+            rgba(7, 10, 35, 0.94)
+        );
+
+    border:
+        1px solid
+        rgba(152, 108, 255, 0.62);
+
+    box-shadow:
+
+        inset 0 0 20px
+        rgba(87, 67, 255, 0.08);
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.bvoc-feature:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #ff43ae;
+
+    box-shadow:
+
+        0 7px 20px
+        rgba(255, 45, 175, 0.25);
+
+}
+
+
+/* =========================================================
+   FEATURE ICON
+========================================================= */
+
+.bvoc-icon {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 5px;
+
+    color:
+        #ffd044;
+
+    font-size: 20px;
+
+}
+
+
+.bvoc-feature:nth-child(4)
+.bvoc-icon {
+
+    color:
+        #24d7ff;
+
+}
+
+
+.bvoc-feature:nth-child(5)
+.bvoc-icon {
+
+    color:
+        #40cfff;
+
+}
+
+
+/* =========================================================
+   FEATURE TITLE
+========================================================= */
+
+.bvoc-feature strong {
+
+    color: #ffffff;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+
+}
+
+
+/* =========================================================
+   FEATURE DESCRIPTION
+========================================================= */
+
+.bvoc-feature span {
+
+    margin-top: 3px;
+
+    color:
+        #e8e9ff;
+
+    font-family:
+        "Plus Jakarta Sans",
+        sans-serif;
+
+    font-size: 9px;
+
+    line-height: 1.15;
+
+}
+
+
+/* =========================================================
+   BOTTOM STRIP
+========================================================= */
+
+.bvoc-bottom-strip {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 13px;
+
+    color: #ffffff;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+}
+
+
+.bvoc-bottom-strip span {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+}
+
+
+.bvoc-bottom-strip i {
+
+    color:
+        #21cfff;
+
+    font-size: 9px;
+
+}
+
+
+.bvoc-bottom-strip b {
+
+    color:
+        rgba(255,255,255,0.5);
+
+}
+
+
+/* =========================================================
+   ENQUIRE BUTTON
+========================================================= */
+
+.bvoc-enquire-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 13px;
+
+    min-width: 230px;
+
+    margin-top: 13px;
+
+    padding:
+        12px 28px;
+
+    box-sizing: border-box;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+
+    color:
+        #ffffff;
+
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #933cff,
+            #d735ca,
+            #ff7041
+        );
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(210, 47, 220, 0.4);
+
+    transition:
+        all 0.3s ease;
+
+}
+
+
+.bvoc-enquire-btn i {
+
+    font-size: 15px;
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+
+.bvoc-enquire-btn:hover {
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+    box-shadow:
+
+        0 12px 32px
+        rgba(255, 48, 190, 0.5);
+
+}
+
+
+.bvoc-enquire-btn:hover i {
+
+    transform:
+        translateX(5px);
+
+}
+
+
+/* =========================================================
+   TAGLINE
+========================================================= */
+
+.bvoc-tagline {
+
+    margin-top: 8px;
+
+    color:
+        #f4c95c;
+
+    font-family:
+        cursive;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .bvoc-popup {
+
+        width: min(620px, 94vw);
+
+        height: min(700px, 90vh);
+
+    }
+
+
+    .bvoc-content {
+
+        width: 100%;
+
+        height: auto;
+
+        margin-left: 0;
+
+        padding:
+            45px 22px 20px;
+
+        justify-content: flex-end;
+
+    }
+
+
+    .bvoc-overlay {
+
+        background:
+
+            linear-gradient(
+                180deg,
+                rgba(4,5,28,0.25),
+                rgba(4,5,28,0.88) 65%
+            );
+
+    }
+
+
+    .bvoc-script {
+
+        top: 40px;
+
+        left: auto;
+
+        right: 35px;
+
+    }
+
+
+    .bvoc-features {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        max-width: 500px;
+
+    }
+
+
+    .bvoc-feature:nth-child(4) {
+
+        grid-column: 1 / 2;
+
+    }
+
+
+    .bvoc-feature:nth-child(5) {
+
+        grid-column: 2 / 3;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .bvoc-popup-overlay {
+
+        padding: 10px;
+
+    }
+
+
+    .bvoc-popup {
+
+        width: 95vw;
+
+        height: 90vh;
+
+        min-height: 0;
+
+        border-radius: 19px;
+
+    }
+
+
+    .bvoc-new-badge {
+
+        left: 18px;
+
+        width: 100px;
+
+        padding:
+            12px 12px 14px;
+
+    }
+
+
+    .bvoc-new-badge span {
+
+        font-size: 22px;
+
+    }
+
+
+    .bvoc-new-badge small {
+
+        font-size: 9px;
+
+    }
+
+
+    .bvoc-script {
+
+        top: 25px;
+
+        right: 25px;
+
+        font-size: 17px;
+
+    }
+
+
+    .bvoc-content {
+
+        padding:
+            35px 13px 18px;
+
+    }
+
+
+    .bvoc-introducing {
+
+        font-size: 10px;
+
+        letter-spacing: 4px;
+
+    }
+
+
+    .bvoc-title {
+
+        font-size: 65px;
+
+        letter-spacing: -3px;
+
+    }
+
+
+    .bvoc-ai {
+
+        font-size: 17px;
+
+        letter-spacing: 4px;
+
+    }
+
+
+    .bvoc-line {
+
+        width: 170px;
+
+    }
+
+
+    .bvoc-recognised {
+
+        font-size: 16px;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    .bvoc-certification {
+
+        font-size: 9px;
+
+        letter-spacing: 1px;
+
+        margin-bottom: 11px;
+
+    }
+
+
+    .bvoc-features {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 5px;
+
+    }
+
+
+    .bvoc-feature {
+
+        min-height: 78px;
+
+    }
+
+
+    .bvoc-feature:nth-child(4),
+    .bvoc-feature:nth-child(5) {
+
+        grid-column: auto;
+
+    }
+
+
+    .bvoc-icon {
+
+        font-size: 17px;
+
+        margin-bottom: 3px;
+
+    }
+
+
+    .bvoc-feature strong {
+
+        font-size: 10px;
+
+    }
+
+
+    .bvoc-feature span {
+
+        font-size: 8px;
+
+    }
+
+
+    .bvoc-bottom-strip {
+
+        flex-wrap: wrap;
+
+        white-space: normal;
+
+        line-height: 1.6;
+
+        font-size: 7px;
+
+    }
+
+
+    .bvoc-enquire-btn {
+
+        min-width: 205px;
+
+        padding:
+            11px 20px;
+
+        font-size: 14px;
+
+    }
+
+
+    .bvoc-tagline {
+
+        font-size: 12px;
+
+    }
+
+
+    .bvoc-close {
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 17px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .bvoc-title {
+
+        font-size: 54px;
+
+    }
+
+
+    .bvoc-ai {
+
+        font-size: 15px;
+
+    }
+
+
+    .bvoc-recognised {
+
+        font-size: 14px;
+
+    }
+
+
+    .bvoc-feature {
+
+        min-height: 70px;
+
+    }
+
+
+    .bvoc-bottom-strip {
+
+        display: none;
+
+    }
+
 }

@@ -631,3 +631,172 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+/* =========================================================
+   B.VOC NEW PROGRAM LAUNCH POPUP
+   SHOW BEFORE HOME PAGE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const bvocPopup =
+        document.getElementById("bvocLaunchPopup");
+
+    const bvocClose =
+        document.getElementById("bvocPopupClose");
+
+    const bvocEnquire =
+        document.getElementById("bvocEnquireBtn");
+
+
+    /* =====================================================
+       SAFETY CHECK
+    ===================================================== */
+
+    if (!bvocPopup || !bvocClose) {
+        return;
+    }
+
+
+    /* =====================================================
+       LOCK WEBSITE
+       POPUP MUST BE CLOSED FIRST
+    ===================================================== */
+
+    document.body.style.overflow = "hidden";
+
+
+    /* =====================================================
+       SHOW POPUP IMMEDIATELY
+    ===================================================== */
+
+    requestAnimationFrame(function () {
+
+        bvocPopup.classList.add("bvoc-show");
+
+    });
+
+
+    /* =====================================================
+       CLOSE POPUP FUNCTION
+    ===================================================== */
+
+    function closeBvocPopup() {
+
+        bvocPopup.classList.remove("bvoc-show");
+
+        /*
+         * Enable website scrolling
+         */
+
+        document.body.style.overflow = "";
+
+
+        /*
+         * Optional: remove popup from keyboard focus
+         */
+
+        bvocPopup.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    /* =====================================================
+       CLOSE BUTTON
+    ===================================================== */
+
+    bvocClose.addEventListener(
+        "click",
+        function () {
+
+            closeBvocPopup();
+
+        }
+    );
+
+
+    /* =====================================================
+       ENQUIRE NOW
+    ===================================================== */
+
+    if (bvocEnquire) {
+
+        bvocEnquire.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                closeBvocPopup();
+
+
+                /*
+                 * Wait for popup closing animation
+                 */
+
+                setTimeout(function () {
+
+                    const contactSection =
+                        document.getElementById("contact");
+
+
+                    if (contactSection) {
+
+                        contactSection.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                    }
+
+                }, 350);
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       CLICK OUTSIDE POPUP
+    ===================================================== */
+
+    bvocPopup.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target === bvocPopup
+            ) {
+
+                closeBvocPopup();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       ESC KEY
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                bvocPopup.classList.contains("bvoc-show")
+            ) {
+
+                closeBvocPopup();
+
+            }
+
+        }
+    );
+
+});
