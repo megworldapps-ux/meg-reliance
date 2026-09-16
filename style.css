@@ -3948,55 +3948,71 @@ html {
     }
 
 }
-/* =========================================================
-   ADMISSIONS POPUP OVERLAY
-========================================================= */
 
+
+/* =========================================================
+   ADMISSIONS OPEN POPUP
+   DESKTOP  : RIGHT SIDE OF HERO
+   MOBILE   : CENTER
+   ========================================================= */
+
+
+/* =========================================================
+   POPUP OVERLAY
+   ========================================================= */
 .admission-popup-overlay {
     position: fixed;
     inset: 0;
+
     width: 100%;
     height: 100vh;
 
-    background: rgba(3, 3, 15, 0.78);
+    background: transparent;
 
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
 
     z-index: 99999;
 
     opacity: 1;
     visibility: visible;
 
+    /* IMPORTANT */
+    pointer-events: none;
+
     transition:
-        opacity 0.4s ease,
-        visibility 0.4s ease;
+        opacity 0.35s ease,
+        visibility 0.35s ease;
 }
 
 
 /* =========================================================
-   POPUP BOX
-========================================================= */
+   POPUP BOX - DESKTOP RIGHT SIDE
+   ========================================================= */
 
 .admission-popup {
-    position: relative;
+    position: absolute;
 
-    width: min(1100px, 90vw);
-    min-height: 650px;
+    top: 105px;
+    right: 38px;
+
+    width: 310px;
+    height: 350px;
+
+    max-width: 310px;
+    min-height: 350px;
 
     overflow: hidden;
 
-    border-radius: 22px;
+    border-radius: 18px;
 
     background:
         radial-gradient(
             circle at 50% 25%,
-            rgba(117, 54, 255, 0.35),
-            transparent 38%
+            rgba(255, 54, 245, 0.35),
+            transparent 55%
         ),
         linear-gradient(
             135deg,
@@ -4008,65 +4024,68 @@ html {
     border: 2px solid rgba(160, 120, 255, 0.8);
 
     box-shadow:
-        0 0 20px rgba(110, 70, 255, 0.7),
-        0 0 60px rgba(224, 47, 255, 0.25),
-        inset 0 0 50px rgba(80, 40, 255, 0.15);
+        0 0 18px rgba(110, 70, 255, 0.7),
+        0 0 45px rgba(224, 47, 255, 0.25),
+        inset 0 0 35px rgba(80, 40, 255, 0.15);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    animation: popupOpen 0.65s cubic-bezier(.17,.67,.3,1.25);
-}
+    /* Popup itself can be clicked */
+    pointer-events: auto;
 
+    animation:
+        popupOpen 0.65s cubic-bezier(.17,.67,.3,1.25);
+}
 
 /* =========================================================
    POPUP ENTRY ANIMATION
-========================================================= */
+   ========================================================= */
 
 @keyframes popupOpen {
 
     0% {
         opacity: 0;
-        transform: scale(0.75);
+        transform: scale(0.75) translateY(-15px);
     }
 
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) translateY(0);
     }
 }
 
 
 /* =========================================================
    CLOSE BUTTON
-========================================================= */
+   ========================================================= */
 
 .admission-popup-close {
     position: absolute;
 
-    top: 18px;
-    right: 18px;
+    top: 8px;
+    right: 8px;
 
-    width: 48px;
-    height: 48px;
+    width: 34px;
+    height: 34px;
 
     border-radius: 50%;
 
     border: 2px solid rgba(255, 255, 255, 0.9);
 
-    background: rgba(10, 5, 30, 0.75);
+    background: rgba(10, 5, 30, 0.8);
 
     color: #ffffff;
 
-    font-size: 34px;
+    font-size: 25px;
     font-weight: 300;
 
-    line-height: 40px;
+    line-height: 28px;
 
     cursor: pointer;
 
-    z-index: 20;
+    z-index: 50;
 
     transition:
         transform 0.25s ease,
@@ -4087,33 +4106,33 @@ html {
 
 /* =========================================================
    MAIN CONTENT
-========================================================= */
+   ========================================================= */
 
 .popup-main-content {
     position: relative;
 
-    width: 58%;
+    width: 100%;
 
     text-align: center;
 
-    z-index: 5;
+    z-index: 10;
 
-    padding: 35px 20px 25px;
+    padding: 28px 50px 20px;
 }
 
 
 /* =========================================================
    LOGO
-========================================================= */
+   ========================================================= */
 
 .popup-logo {
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 
 .popup-logo img {
-    width: 180px;
-    max-width: 70%;
+    width: 105px;
+    max-width: 100%;
 
     height: auto;
 
@@ -4123,17 +4142,17 @@ html {
 
 /* =========================================================
    TOP TEXT
-========================================================= */
+   ========================================================= */
 
 .popup-top-text {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
     color: #ffffff;
 
-    font-size: 12px;
+    font-size: 7px;
     font-weight: 600;
 
-    letter-spacing: 5px;
+    letter-spacing: 2px;
 
     opacity: 0.9;
 }
@@ -4141,7 +4160,7 @@ html {
 
 /* =========================================================
    MAIN HEADING
-========================================================= */
+   ========================================================= */
 
 .popup-heading {
     display: flex;
@@ -4149,33 +4168,33 @@ html {
 
     align-items: center;
 
-    line-height: 0.9;
+    line-height: 0.88;
 
-    margin-bottom: 28px;
+    margin-bottom: 14px;
 }
 
 
 .popup-heading span {
-    font-size: clamp(48px, 6vw, 82px);
+    font-size: 34px;
 
     font-weight: 900;
 
-    letter-spacing: -3px;
+    letter-spacing: -1.5px;
 
     color: #ffffff;
 
     text-shadow:
-        0 4px 0 #6832b8,
-        0 8px 18px rgba(0, 0, 0, 0.5);
+        0 3px 0 #6832b8,
+        0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 
 .popup-heading strong {
-    font-size: clamp(65px, 8vw, 105px);
+    font-size: 48px;
 
     font-weight: 1000;
 
-    letter-spacing: -4px;
+    letter-spacing: -2px;
 
     background:
         linear-gradient(
@@ -4191,32 +4210,32 @@ html {
     -webkit-text-fill-color: transparent;
 
     filter:
-        drop-shadow(0 5px 0 #a32174)
-        drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+        drop-shadow(0 3px 0 #a32174)
+        drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
 }
 
 
 /* =========================================================
    SPONSORSHIP BOX
-========================================================= */
+   ========================================================= */
 
 .popup-sponsorship {
     position: relative;
 
-    width: min(520px, 100%);
+    width: 100%;
 
-    margin: 0 auto 20px;
+    margin: 0 auto 12px;
 
-    padding: 16px 30px;
+    padding: 8px 10px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    gap: 15px;
+    gap: 8px;
 
-    border-radius: 8px;
+    border-radius: 7px;
 
     background:
         linear-gradient(
@@ -4225,16 +4244,16 @@ html {
             #f5a928
         );
 
-    border: 3px solid #ffdb63;
+    border: 2px solid #ffdb63;
 
     box-shadow:
-        0 6px 0 #a75a19,
-        0 10px 25px rgba(0, 0, 0, 0.35);
+        0 4px 0 #a75a19,
+        0 7px 15px rgba(0, 0, 0, 0.35);
 }
 
 
 .popup-sponsorship span {
-    font-size: 38px;
+    font-size: 22px;
 }
 
 
@@ -4249,17 +4268,17 @@ html {
 .popup-sponsorship small {
     color: #17205a;
 
-    font-size: 21px;
+    font-size: 11px;
     font-weight: 900;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 
 .popup-sponsorship strong {
     color: #e32332;
 
-    font-size: 30px;
+    font-size: 17px;
     font-weight: 1000;
 
     line-height: 1;
@@ -4268,33 +4287,33 @@ html {
 
 /* =========================================================
    TAGLINE
-========================================================= */
+   ========================================================= */
 
 .popup-tagline {
     color: #ffffff;
 
-    font-size: 15px;
+    font-size: 8px;
 
     font-weight: 600;
 
-    letter-spacing: 4px;
+    letter-spacing: 1.5px;
 
-    margin-bottom: 30px;
+    margin-bottom: 13px;
 }
 
 
 /* =========================================================
    FEATURES
-========================================================= */
+   ========================================================= */
 
 .popup-features {
     display: flex;
 
     justify-content: center;
 
-    gap: 30px;
+    gap: 7px;
 
-    padding-top: 15px;
+    padding-top: 9px;
 
     border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
@@ -4305,17 +4324,21 @@ html {
 
     align-items: center;
 
-    gap: 9px;
+    gap: 3px;
+
+    flex: 1;
+
+    justify-content: center;
 }
 
 
 .popup-feature span {
-    font-size: 30px;
+    font-size: 16px;
 
     color: #ff63d7;
 
     text-shadow:
-        0 0 10px #ff45d0;
+        0 0 8px #ff45d0;
 }
 
 
@@ -4326,22 +4349,22 @@ html {
 
     color: #ffffff;
 
-    font-size: 13px;
+    font-size: 7px;
 
-    line-height: 1.35;
+    line-height: 1.25;
 }
 
 
 /* =========================================================
    CHARACTERS
-========================================================= */
+   ========================================================= */
 
 .popup-character {
     position: absolute;
 
     bottom: 0;
 
-    z-index: 7;
+    z-index: 15;
 
     pointer-events: none;
 }
@@ -4357,21 +4380,24 @@ html {
     object-fit: contain;
 
     filter:
-        drop-shadow(0 12px 15px rgba(0, 0, 0, 0.45))
-        drop-shadow(0 0 12px rgba(255, 70, 220, 0.2));
+        drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45))
+        drop-shadow(0 0 10px rgba(255, 70, 220, 0.2));
 }
 
 
-/* LEFT - LITTLE SINGHAM */
+/* =========================================================
+   LEFT - LITTLE SINGHAM
+   ========================================================= */
 
 .popup-singham {
-    left: 15px;
+    left: -4px;
 
-    width: 27%;
+    width: 23%;
 
-    max-width: 290px;
+    max-width: 78px;
 
-    animation: characterFloatLeft 3s ease-in-out infinite;
+    animation:
+        characterFloatLeft 3s ease-in-out infinite;
 }
 
 
@@ -4383,21 +4409,24 @@ html {
     }
 
     50% {
-        transform: translateY(-8px);
+        transform: translateY(-5px);
     }
 }
 
 
-/* RIGHT - LITTLE KRISHNA */
+/* =========================================================
+   RIGHT - LITTLE KRISHNA
+   ========================================================= */
 
 .popup-krishna {
-    right: 15px;
+    right: -4px;
 
-    width: 25%;
+    width: 22%;
 
-    max-width: 280px;
+    max-width: 75px;
 
-    animation: characterFloatRight 3.2s ease-in-out infinite;
+    animation:
+        characterFloatRight 3.2s ease-in-out infinite;
 }
 
 
@@ -4409,78 +4438,84 @@ html {
     }
 
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-6px);
     }
 }
 
 
 /* =========================================================
-   SIDE HANDWRITTEN TEXT
-========================================================= */
+   SIDE TEXT
+   ========================================================= */
 
 .popup-side-text {
     position: absolute;
 
     color: #ff8ee8;
 
-    font-size: 15px;
+    font-size: 9px;
 
-    line-height: 1.45;
+    line-height: 1.3;
 
     font-style: italic;
 
     font-weight: 600;
 
-    z-index: 8;
+    z-index: 18;
 
     text-shadow:
-        0 0 8px rgba(255, 70, 220, 0.6);
+        0 0 6px rgba(255, 70, 220, 0.6);
 }
 
 
 .popup-left-text {
-    left: 32px;
+    left: 8px;
 
-    bottom: 150px;
+    bottom: 75px;
 
     transform: rotate(-8deg);
+
+    display: none;
 }
 
 
 .popup-right-text {
-    right: 30px;
+    right: 8px;
 
-    top: 150px;
+    top: 75px;
 
     transform: rotate(5deg);
+
+    display: none;
 }
 
 
 /* =========================================================
    DECORATIVE GLOW
-========================================================= */
+   ========================================================= */
 
 .admission-popup::before {
     content: "";
 
     position: absolute;
 
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
 
     left: 50%;
-    top: 35%;
+    top: 42%;
 
     transform: translate(-50%, -50%);
 
     background:
         radial-gradient(
             circle,
-            rgba(217, 49, 255, 0.25),
+            rgba(217, 49, 255, 0.22),
             transparent 65%
         );
 
     pointer-events: none;
+
+    z-index: 1;
 }
 
 
@@ -4489,19 +4524,21 @@ html {
 
     position: absolute;
 
-    inset: 5px;
+    inset: 4px;
 
-    border-radius: 18px;
+    border-radius: 14px;
 
     border: 1px solid rgba(255, 255, 255, 0.08);
 
     pointer-events: none;
+
+    z-index: 30;
 }
 
 
 /* =========================================================
-   POPUP CLOSE STATE
-========================================================= */
+   CLOSE STATE
+   ========================================================= */
 
 .admission-popup-overlay.popup-closed {
     opacity: 0;
@@ -4518,139 +4555,138 @@ html {
 
 
 /* =========================================================
-   MOBILE
-========================================================= */
+   TABLET
+   ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
     .admission-popup {
-        width: 94vw;
+        top: 215px;
+        right: 25px;
 
-        min-height: 520px;
+        width: 290px;
+        height: 330px;
+
+        max-width: 290px;
+        min-height: 330px;
     }
 
     .popup-main-content {
-        width: 68%;
+        padding: 25px 45px 18px;
     }
 
     .popup-heading span {
-        font-size: 45px;
+        font-size: 31px;
     }
 
     .popup-heading strong {
-        font-size: 65px;
+        font-size: 44px;
     }
 
-    .popup-singham {
-        width: 25%;
-    }
-
-    .popup-krishna {
-        width: 24%;
-    }
-
-    .popup-side-text {
-        display: none;
-    }
-
-    .popup-features {
-        gap: 12px;
-    }
-
-    .popup-feature p {
-        font-size: 10px;
-    }
 }
 
 
-@media (max-width: 600px) {
+/* =========================================================
+   MOBILE
+   CENTER POPUP
+   ========================================================= */
 
-    /* =========================================================
-   CENTER ADMISSION POPUP
-========================================================= */
+@media (max-width: 768px) {
 
-.admission-popup {
-    position: relative;
+    .admission-popup-overlay {
+        position: fixed;
 
-    /* 4 SIDE SPACE */
-    width: 82vw;
-    max-width: 1000px;
+        inset: 0;
 
-    height: 78vh;
-    max-height: 620px;
+        width: 100%;
+        height: 100vh;
 
-    min-height: 0;
+        display: flex;
 
-    margin: auto;
+        align-items: center;
+        justify-content: center;
 
-    overflow: hidden;
+        padding: 15px;
 
-    border-radius: 22px;
+        background: rgba(3, 3, 15, 0.78);
 
-    background:
-        radial-gradient(
-            circle at 50% 25%,
-            rgba(117, 54, 255, 0.35),
-            transparent 38%
-        ),
-        linear-gradient(
-            135deg,
-            #080622 0%,
-            #151044 48%,
-            #090722 100%
-        );
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
 
-    border: 2px solid rgba(160, 120, 255, 0.8);
+        pointer-events: auto;
+    }
 
-    box-shadow:
-        0 0 20px rgba(110, 70, 255, 0.7),
-        0 0 60px rgba(224, 47, 255, 0.25),
-        inset 0 0 50px rgba(80, 40, 255, 0.15);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .admission-popup {
+        position: relative;
 
-    animation: popupOpen 0.65s cubic-bezier(.17,.67,.3,1.25);
-}
+        top: auto;
+        right: auto;
+
+        width: min(92vw, 380px);
+
+        height: auto;
+
+        max-width: 380px;
+
+        min-height: 0;
+
+        margin: 0;
+
+        border-radius: 20px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+
     .admission-popup-close {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
 
-        top: 10px;
-        right: 10px;
+        top: 8px;
+        right: 8px;
 
-        font-size: 27px;
+        font-size: 25px;
 
-        line-height: 32px;
+        line-height: 30px;
     }
+
 
     .popup-main-content {
         width: 100%;
 
-        padding:
-            45px 15px 20px;
+        padding: 40px 45px 25px;
     }
 
+
     .popup-logo img {
-        width: 130px;
+        width: 125px;
     }
+
 
     .popup-top-text {
         font-size: 8px;
 
         letter-spacing: 2px;
+
+        margin-bottom: 12px;
     }
+
 
     .popup-heading {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
+
     .popup-heading span {
-        font-size: 34px;
+        font-size: 36px;
 
         letter-spacing: -1px;
     }
+
 
     .popup-heading strong {
         font-size: 52px;
@@ -4658,57 +4694,163 @@ html {
         letter-spacing: -2px;
     }
 
+
     .popup-sponsorship {
-        width: 82%;
+        width: 100%;
 
         padding: 10px 12px;
     }
+
 
     .popup-sponsorship span {
         font-size: 25px;
     }
 
+
     .popup-sponsorship small {
-        font-size: 14px;
+        font-size: 13px;
     }
 
+
     .popup-sponsorship strong {
-        font-size: 21px;
+        font-size: 20px;
     }
+
 
     .popup-tagline {
         font-size: 9px;
 
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
 
         margin-bottom: 20px;
     }
+
 
     .popup-features {
         gap: 5px;
     }
 
+
     .popup-feature {
         gap: 3px;
     }
+
 
     .popup-feature span {
         font-size: 18px;
     }
 
+
     .popup-feature p {
         font-size: 8px;
     }
 
-    .popup-singham {
-        left: -10px;
 
-        width: 29%;
+    .popup-singham {
+        left: -5px;
+
+        width: 25%;
+
+        max-width: 90px;
     }
 
-    .popup-krishna {
-        right: -10px;
 
-        width: 28%;
+    .popup-krishna {
+        right: -5px;
+
+        width: 25%;
+
+        max-width: 90px;
+    }
+
+
+    .popup-side-text {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .admission-popup {
+        width: 92vw;
+
+        max-width: 360px;
+    }
+
+
+    .popup-main-content {
+        padding:
+            38px 38px 22px;
+    }
+
+
+    .popup-logo img {
+        width: 110px;
+    }
+
+
+    .popup-heading span {
+        font-size: 31px;
+    }
+
+
+    .popup-heading strong {
+        font-size: 46px;
+    }
+
+
+    .popup-sponsorship {
+        padding: 8px 10px;
+    }
+
+
+    .popup-sponsorship span {
+        font-size: 22px;
+    }
+
+
+    .popup-sponsorship small {
+        font-size: 11px;
+    }
+
+
+    .popup-sponsorship strong {
+        font-size: 18px;
+    }
+
+
+    .popup-tagline {
+        font-size: 8px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .popup-feature span {
+        font-size: 15px;
+    }
+
+
+    .popup-feature p {
+        font-size: 7px;
+    }
+
+
+    .popup-singham {
+        width: 24%;
+
+        max-width: 75px;
+    }
+
+
+    .popup-krishna {
+        width: 24%;
+
+        max-width: 75px;
     }
 }

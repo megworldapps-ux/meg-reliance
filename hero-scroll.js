@@ -598,7 +598,7 @@ document.addEventListener("DOMContentLoaded", function () {
        SHOW POPUP WHEN WEBSITE OPENS
     ===================================================== */
 
-    document.body.style.overflow = "hidden";
+    // document.body.style.overflow = "hidden";
 
 
     /* =====================================================
