@@ -5459,7 +5459,7 @@ html {
 
 .bvoc-feature {
 
-    min-height: 92px;
+    min-height: 100px;
 
     padding:
         8px 5px;
@@ -5595,7 +5595,7 @@ html {
         "Plus Jakarta Sans",
         sans-serif;
 
-    font-size: 9px;
+    font-size: 10px;
 
     line-height: 1.15;
 
@@ -5653,7 +5653,7 @@ html {
     color:
         #21cfff;
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
