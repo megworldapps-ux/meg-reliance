@@ -580,57 +580,7 @@
     }
 
 })();
-/* =========================================================
-   ADMISSIONS POPUP
-========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-
-    const popup = document.getElementById("admissionPopup");
-    const closeButton = document.getElementById("admissionPopupClose");
-
-    if (!popup || !closeButton) {
-        return;
-    }
-
-
-    /* =====================================================
-       SHOW POPUP WHEN WEBSITE OPENS
-    ===================================================== */
-
-    // document.body.style.overflow = "hidden";
-
-
-    /* =====================================================
-       CLOSE BUTTON
-    ===================================================== */
-
-    closeButton.addEventListener("click", function () {
-
-        popup.classList.add("popup-closed");
-
-        document.body.style.overflow = "";
-
-    });
-
-
-    /* =====================================================
-       CLOSE WHEN CLICKING OUTSIDE POPUP
-    ===================================================== */
-
-    popup.addEventListener("click", function (event) {
-
-        if (event.target === popup) {
-
-            popup.classList.add("popup-closed");
-
-            document.body.style.overflow = "";
-
-        }
-
-    });
-
-});
 /* =========================================================
    B.VOC NEW PROGRAM LAUNCH POPUP
    SHOW BEFORE HOME PAGE
@@ -798,5 +748,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
+
+});
+document.addEventListener("DOMContentLoaded", function () {
+
+    const popup = document.querySelector(".admission-popup");
+    const closeBtn = document.getElementById("popupClose");
+
+    if (!popup || !closeBtn) return;
+
+    closeBtn.addEventListener("click", function () {
+        popup.style.display = "none";
+    });
 
 });
