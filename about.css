@@ -1208,3 +1208,270 @@
         justify-content: center;
     }
 }
+/* =========================================
+   FULL WIDTH GAME GALLERY
+========================================= */
+
+.game-gallery {
+    width: 100vw;
+    height: 120px;
+
+    position: relative;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    overflow: hidden;
+
+    background: #0b0712;
+
+    display: flex;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================
+   MOVING TRACK
+========================================= */
+
+.game-track {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    width: max-content;
+
+    padding: 0;
+
+    animation: gameSlide 40s linear infinite;
+
+    will-change: transform;
+}
+
+
+/* =========================================
+   LANDSCAPE IMAGE CARD
+========================================= */
+
+.game-card {
+    width: 450px;
+    height: 105px;
+
+    flex: 0 0 300px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    border-radius: 8px;
+
+    border: 2px solid rgba(255,255,255,0.35);
+
+    background: #16111f;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.5);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* =========================================
+   LANDSCAPE IMAGE
+========================================= */
+
+.game-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.4s ease;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.game-card:hover {
+    transform: translateY(-8px) scale(1.04);
+
+    border-color: rgba(255,255,255,0.85);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.7);
+
+    z-index: 20;
+}
+
+.game-card:hover img {
+    transform: scale(1.05);
+
+    filter: brightness(1.08);
+}
+
+
+/* =========================================
+   CONTINUOUS LEFT MOVEMENT
+========================================= */
+
+@keyframes gameSlide {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* =========================================
+   PAUSE WHEN MOUSE HOVERS
+========================================= */
+
+.game-gallery:hover .game-track {
+    animation-play-state: paused;
+}
+
+
+/* =========================================
+   LEFT EDGE FADE
+========================================= */
+
+.game-gallery::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 100px;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to right,
+            #0b0712,
+            transparent
+        );
+}
+
+
+/* =========================================
+   RIGHT EDGE FADE
+========================================= */
+
+.game-gallery::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 100px;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to left,
+            #0b0712,
+            transparent
+        );
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .game-gallery {
+        width: 100vw;
+
+        height: 250px;
+    }
+
+    .game-track {
+        gap: 16px;
+
+        animation-duration: 32s;
+    }
+
+    .game-card {
+        width: 230px;
+        height: 135px;
+
+        flex-basis: 230px;
+
+        border-radius: 6px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .game-gallery {
+        width: 100vw;
+
+        height: 190px;
+    }
+
+    .game-track {
+        gap: 12px;
+
+        animation-duration: 27s;
+    }
+
+    .game-card {
+        width: 180px;
+        height: 105px;
+
+        flex-basis: 180px;
+
+        border-radius: 5px;
+
+        border-width: 1px;
+    }
+
+    .game-gallery::before,
+    .game-gallery::after {
+        width: 45px;
+    }
+
+}
