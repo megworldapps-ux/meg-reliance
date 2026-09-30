@@ -1,0 +1,364 @@
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ================================
+   BODY
+================================ */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #eef4ff 100%
+        );
+
+    color: #111827;
+}
+
+
+/* ================================
+   SECTION
+================================ */
+
+.enquiry-section {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px 20px;
+}
+
+
+/* ================================
+   FORM CONTAINER
+================================ */
+
+.form-container {
+    width: 100%;
+    max-width: 680px;
+
+    padding: 45px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.10);
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.form-header {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.form-tag {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    padding: 6px 13px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-radius: 50px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+
+.form-header h1 {
+    margin-bottom: 10px;
+
+    font-size: 32px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    color: #111827;
+}
+
+
+.form-header p {
+    max-width: 480px;
+
+    margin: auto;
+
+    color: #6b7280;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* ================================
+   FORM ROW
+================================ */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+/* ================================
+   FORM GROUP
+================================ */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.form-group label span {
+    color: #ef4444;
+}
+
+
+/* ================================
+   INPUT / SELECT
+================================ */
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #111827;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.form-group input::placeholder {
+    color: #9ca3af;
+}
+
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #9ca3af;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.09);
+}
+
+
+/* ================================
+   SELECT
+================================ */
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* ================================
+   SUBMIT BUTTON
+================================ */
+
+.submit-btn {
+
+    width: 100%;
+
+    height: 54px;
+
+    margin-top: 5px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.submit-btn:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+
+.submit-btn:active {
+
+    transform: translateY(0);
+
+    box-shadow: none;
+}
+
+
+.arrow {
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.submit-btn:hover .arrow {
+
+    transform: translateX(4px);
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .enquiry-section {
+
+        padding: 25px 15px;
+    }
+
+
+    .form-container {
+
+        padding: 30px 20px;
+
+        border-radius: 16px;
+    }
+
+
+    .form-header {
+
+        margin-bottom: 28px;
+    }
+
+
+    .form-header h1 {
+
+        font-size: 27px;
+    }
+
+
+    .form-header p {
+
+        font-size: 14px;
+    }
+
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+
+    .form-group input,
+    .form-group select {
+
+        height: 48px;
+    }
+
+
+    .submit-btn {
+
+        height: 52px;
+    }
+
+}
+

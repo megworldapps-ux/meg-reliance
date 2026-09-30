@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Course Enquiry</title>
+
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+
+    <section class="enquiry-section">
+
+        <div class="form-container">
+
+            <div class="form-header">
+                <span class="form-tag">COURSE ENQUIRY</span>
+
+                <h1>Get In Touch</h1>
+
+                <p>
+                    Fill in your details and our team will contact you shortly.
+                </p>
+            </div>
+
+
+            <!-- FORM -->
+            <form
+    action="https://formsubmit.co/vickychoky006@email.com"
+    method="POST"
+>
+
+    <input
+        type="hidden"
+        name="_subject"
+        value="New Course Enquiry"
+    >
+
+    <input
+        type="hidden"
+        name="_template"
+        value="table"
+    >
+
+    <input
+        type="hidden"
+        name="_captcha"
+        value="false"
+    >
+
+    <input
+        type="text"
+        name="First Name"
+        placeholder="First Name"
+        required
+    >
+
+    <input
+        type="text"
+        name="Last Name"
+        placeholder="Last Name"
+        required
+    >
+
+    <input
+        type="email"
+        name="Email"
+        placeholder="Email"
+        required
+    >
+
+    <input
+        type="tel"
+        name="Phone Number"
+        placeholder="Phone Number"
+        maxlength="10"
+        required
+    >
+
+    <input
+        type="text"
+        name="City"
+        placeholder="City"
+        required
+    >
+
+    <select name="Course" required>
+        <option value="">Select Course</option>
+        <option value="MBA">MBA</option>
+        <option value="BBA">BBA</option>
+        <option value="BCA">BCA</option>
+        <option value="MCA">MCA</option>
+        <option value="B.Com">B.Com</option>
+        <option value="M.Com">M.Com</option>
+        <option value="Logistics & Supply Chain Management">
+            Logistics & Supply Chain Management
+        </option>
+        <option value="Digital Marketing">
+            Digital Marketing
+        </option>
+    </select>
+
+    <button type="submit">
+        Submit
+    </button>
+
+</form>
+
+        </div>
+
+    </section>
+
+
+    <script src="form.js"></script>
+
+</body>
+
+</html>
+
