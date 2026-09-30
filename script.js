@@ -88,21 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Enquiry form ---------- */
-  const enquiryForm = document.getElementById('enquiryForm');
-  const formNote = document.getElementById('formNote');
-
-  enquiryForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const data = new FormData(enquiryForm);
-    const name = data.get('name');
-
-    formNote.textContent =
-      `Thanks, ${name}! An advisor will reach out shortly.`;
-
-    enquiryForm.reset();
-  });
+ 
 
 
   /* ---------- Cursor sparkle effect ---------- */
