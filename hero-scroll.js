@@ -317,253 +317,49 @@
 /* ==========================================================
    2. ENQUIRY FORM - FORMSUBMIT
    ----------------------------------------------------------
-   Visitor submits form
-          ↓
-   JavaScript sends form to FormSubmit
-          ↓
-   FormSubmit sends email
-          ↓
-   vickychoky006@gmail.com
+   Normal browser form submission
+   No AJAX / No fetch / No CORS issue
    ========================================================== */
 
 (function () {
 
     'use strict';
 
-
     function initEnquiryForm() {
 
-        const form =
-            document.getElementById('enquiryForm');
-
-
-        const submitButton =
-            document.getElementById('submitEnquiryBtn');
-
-
-        /*
-         * The message element is optional.
-         * Your new HTML doesn't require it,
-         * but if it exists, we'll use it.
-         */
-        const formNote =
-            document.getElementById('formNote');
-
+        const form = document.getElementById('enquiryForm');
+        const submitButton = document.getElementById('submitEnquiryBtn');
 
         // Stop if form doesn't exist
         if (!form) {
             return;
         }
 
-
-        /* --------------------------------------------------
-           Form submit
-        -------------------------------------------------- */
-
-        form.addEventListener(
-            'submit',
-            async function (event) {
-
-                /*
-                 * IMPORTANT:
-                 * Prevent normal browser navigation.
-                 *
-                 * Instead, we submit the form using AJAX
-                 * to FormSubmit.
-                 */
-
-                event.preventDefault();
-
-
-                /* --------------------------------------------------
-                   Get form values
-                -------------------------------------------------- */
-
-                const firstNameInput =
-                    form.querySelector(
-                        '[name="first_name"]'
-                    );
-
-
-                const firstName =
-                    firstNameInput
-                        ? firstNameInput.value.trim()
-                        : '';
-
-
-                /* --------------------------------------------------
-                   Button loading state
-                -------------------------------------------------- */
-
-                if (submitButton) {
-
-                    submitButton.disabled = true;
-
-                    submitButton.textContent =
-                        'Sending...';
-
-                }
-
-
-                /* --------------------------------------------------
-                   Show temporary message
-                -------------------------------------------------- */
-
-                if (formNote) {
-
-                    formNote.textContent =
-                        'Sending your enquiry...';
-
-                    formNote.style.display =
-                        'block';
-
-                }
-
-
-                try {
-
-                    /* ------------------------------------------------
-                       Create FormData
-                    ------------------------------------------------ */
-
-                    const formData =
-                        new FormData(form);
-
-
-                    /* ------------------------------------------------
-                       Send to FormSubmit AJAX endpoint
-                    ------------------------------------------------ */
-
-                    const response =
-                        await fetch(
-                            'https://formsubmit.co/ajax/vickychoky006@gmail.com',
-                            {
-                                method: 'POST',
-
-                                body: formData,
-
-                                headers: {
-                                    'Accept':
-                                        'application/json'
-                                }
-                            }
-                        );
-
-
-                    /* ------------------------------------------------
-                       Read response
-                    ------------------------------------------------ */
-
-                    const result =
-                        await response.json();
-
-
-                    /* ------------------------------------------------
-                       Check FormSubmit response
-                    ------------------------------------------------ */
-
-                    if (
-                        response.ok &&
-                        result.success
-                    ) {
-
-                        /* --------------------------------------------
-                           Success
-                        -------------------------------------------- */
-
-                        if (formNote) {
-
-                            formNote.textContent =
-                                `Thanks, ${firstName || 'there'}! An advisor will reach out shortly.`;
-
-                            formNote.style.display =
-                                'block';
-
-                        }
-
-
-                        /* --------------------------------------------
-                           Reset form
-                        -------------------------------------------- */
-
-                        form.reset();
-
-
-                        /* --------------------------------------------
-                           Restore button
-                        -------------------------------------------- */
-
-                        if (submitButton) {
-
-                            submitButton.disabled = false;
-
-                            submitButton.textContent =
-                                'Submit enquiry';
-
-                        }
-
-
-                    } else {
-
-                        throw new Error(
-                            result.message ||
-                            'Form submission failed.'
-                        );
-
-                    }
-
-
-                } catch (error) {
-
-                    console.error(
-                        'FormSubmit Error:',
-                        error
-                    );
-
-
-                    /* ------------------------------------------------
-                       Error message
-                    ------------------------------------------------ */
-
-                    if (formNote) {
-
-                        formNote.textContent =
-                            'Sorry, your enquiry could not be sent. Please try again.';
-
-                        formNote.style.display =
-                            'block';
-
-                    }
-
-
-                    /* ------------------------------------------------
-                       Restore button
-                    ------------------------------------------------ */
-
-                    if (submitButton) {
-
-                        submitButton.disabled = false;
-
-                        submitButton.textContent =
-                            'Submit enquiry';
-
-                    }
-
-                }
-
+        form.addEventListener('submit', function () {
+
+            /*
+             * IMPORTANT:
+             * Do NOT use event.preventDefault()
+             * Do NOT use fetch()
+             *
+             * Browser will submit the form directly
+             * to FormSubmit using the HTML action URL.
+             */
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
             }
-        );
+
+        });
 
     }
-
 
     /* ------------------------------------------------------
        Initialize enquiry form
     ------------------------------------------------------ */
 
-    if (
-        document.readyState === 'loading'
-    ) {
+    if (document.readyState === 'loading') {
 
         document.addEventListener(
             'DOMContentLoaded',
