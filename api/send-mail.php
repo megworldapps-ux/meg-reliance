@@ -159,7 +159,7 @@ $course =
 ========================================= */
 
 $to =
-    "vickychoky006@email.com";
+    "vickychoky006@gmail.com";
 
 
 $subject =
