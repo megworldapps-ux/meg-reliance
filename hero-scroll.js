@@ -315,10 +315,7 @@
 
 
 /* ==========================================================
-   2. ENQUIRY FORM - FORMSUBMIT
-   ----------------------------------------------------------
-   Normal browser form submission
-   No AJAX / No fetch / No CORS issue
+   2. ENQUIRY FORM - OWN PHP BACKEND
    ========================================================== */
 
 (function () {
@@ -328,36 +325,158 @@
     function initEnquiryForm() {
 
         const form = document.getElementById('enquiryForm');
-        const submitButton = document.getElementById('submitEnquiryBtn');
+        const submitButton =
+            document.getElementById('submitEnquiryBtn');
 
-        // Stop if form doesn't exist
         if (!form) {
             return;
         }
 
-        form.addEventListener('submit', function () {
+        form.addEventListener('submit', async function (event) {
 
-            /*
-             * IMPORTANT:
-             * Do NOT use event.preventDefault()
-             * Do NOT use fetch()
-             *
-             * Browser will submit the form directly
-             * to FormSubmit using the HTML action URL.
-             */
+            event.preventDefault();
 
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.textContent = 'Sending...';
             }
 
+            try {
+
+                const formData = new FormData(form);
+
+                const response = await fetch(
+                    'api/send-mail.php',
+                    {
+                        method: 'POST',
+                        body: formData
+                    }
+                );
+
+                const result = await response.json();
+
+                console.log('Server response:', result);
+
+                if (!response.ok || !result.success) {
+                    throw new Error(
+                        result.message ||
+                        'Email could not be sent.'
+                    );
+                }
+
+                /* ==========================================
+                   SUCCESS
+                   ========================================== */
+
+                form.reset();
+
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit enquiry';
+                }
+
+                showSuccessPopup();
+
+            } catch (error) {
+
+                console.error(
+                    'Form submission error:',
+                    error
+                );
+
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit enquiry';
+                }
+
+                alert(
+                    error.message ||
+                    'Sorry! Your enquiry could not be sent. Please try again.'
+                );
+
+            }
+
         });
 
     }
 
-    /* ------------------------------------------------------
-       Initialize enquiry form
-    ------------------------------------------------------ */
+
+    /* ==========================================================
+       SUCCESS POPUP
+       ========================================================== */
+
+    function showSuccessPopup() {
+
+        const oldPopup =
+            document.getElementById('formSuccessPopup');
+
+        if (oldPopup) {
+            oldPopup.remove();
+        }
+
+        const popup = document.createElement('div');
+
+        popup.id = 'formSuccessPopup';
+
+        popup.innerHTML = `
+            <div class="success-popup-overlay">
+
+                <div class="success-popup-box">
+
+                    <div class="success-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <h2>Thank You!</h2>
+
+                    <p>
+                        Your enquiry has been sent successfully.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="successPopupClose"
+                    >
+                        OK
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        document.body.appendChild(popup);
+
+        const closeButton =
+            document.getElementById('successPopupClose');
+
+        if (closeButton) {
+
+            closeButton.addEventListener(
+                'click',
+                function () {
+                    popup.remove();
+                }
+            );
+
+        }
+
+        setTimeout(function () {
+
+            if (
+                document.getElementById('formSuccessPopup')
+            ) {
+                popup.remove();
+            }
+
+        }, 4000);
+
+    }
+
+
+    /* ==========================================================
+       INITIALIZE
+       ========================================================== */
 
     if (document.readyState === 'loading') {
 
