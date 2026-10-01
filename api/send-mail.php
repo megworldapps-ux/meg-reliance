@@ -2,10 +2,13 @@
 
 header('Content-Type: application/json; charset=UTF-8');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-/* ==========================================================
-   ONLY POST REQUEST ALLOWED
-   ========================================================== */
+require __DIR__ . '/PHPMailer/src/Exception.php';
+require __DIR__ . '/PHPMailer/src/PHPMailer.php';
+require __DIR__ . '/PHPMailer/src/SMTP.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
@@ -20,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 
-/* ==========================================================
-   GET FORM DATA
-   ========================================================== */
+/* =========================
+   FORM DATA
+========================= */
 
 $firstName = trim($_POST['first_name'] ?? '');
 $lastName  = trim($_POST['last_name'] ?? '');
@@ -32,9 +35,9 @@ $city      = trim($_POST['city'] ?? '');
 $course    = trim($_POST['course'] ?? '');
 
 
-/* ==========================================================
+/* =========================
    VALIDATION
-   ========================================================== */
+========================= */
 
 if (
     $firstName === '' ||
@@ -56,122 +59,167 @@ if (
 }
 
 
-/* ==========================================================
-   EMAIL VALIDATION
-   ========================================================== */
-
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     http_response_code(400);
 
     echo json_encode([
         'success' => false,
-        'message' => 'Please enter a valid email address.'
+        'message' => 'Invalid email address.'
     ]);
 
     exit;
 }
 
 
-/* ==========================================================
-   RECEIVER
-   ========================================================== */
+/* =========================
+   PHPMailer
+========================= */
 
-$to = 'vickychoky006@gmail.com';
-
-$subject =
-    'New Course Enquiry - Reliance Animation Academy';
+$mail = new PHPMailer(true);
 
 
-/* ==========================================================
-   EMAIL CONTENT
-   ========================================================== */
+try {
 
-$message = "
+    /* SMTP */
 
+    $mail->isSMTP();
 
-NEW COURSE ENQUIRY
-==============================
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
 
-First Name : {$firstName}
+    /* Gmail account */
+    $mail->Username   = 'mv7852396@gmail.com';
 
-Last Name  : {$lastName}
+    /* YOUR 16 CHARACTER APP PASSWORD */
+    $mail->Password   = 'vajzepdolyhuwxzq';
 
-Email      : {$email}
-
-Phone      : {$phone}
-
-City       : {$city}
-
-Course     : {$course}
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
 
-==============================
-Reliance Animation Academy
-";
+    /* =========================
+       FROM
+    ========================= */
+
+    $mail->setFrom(
+        'mv7852396@gmail.com',
+        'Reliance Animation Academy'
+    );
 
 
-/* ==========================================================
-   EMAIL HEADERS
-   ========================================================== */
+    /* =========================
+       RECEIVER
+    ========================= */
 
-$headers  = "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-/*
- * Use your domain email here.
- * Do NOT use visitor email as From.
- */
-
-$headers .=
-    "From: Reliance Animation Academy <no-reply@relianceacademychennai.com>\r\n";
-
-/*
- * Visitor email goes to Reply-To.
- */
-
-$headers .=
-    "Reply-To: " . $email . "\r\n";
+    $mail->addAddress(
+        'mv7852396@gmail.com',
+        'Reliance Animation Academy'
+    );
 
 
-/* ==========================================================
-   SEND EMAIL
-   ========================================================== */
+    /* =========================
+       REPLY TO CUSTOMER
+    ========================= */
 
-$sent = mail(
-    $to,
-    $subject,
-    $message,
-    $headers
-);
+    $mail->addReplyTo(
+        $email,
+        $firstName . ' ' . $lastName
+    );
 
 
-/* ==========================================================
-   RESPONSE
-   ========================================================== */
+    /* =========================
+       EMAIL
+    ========================= */
 
-if ($sent) {
+    $mail->isHTML(true);
+
+    $mail->Subject =
+        'New Course Enquiry - Reliance Animation Academy';
+
+
+    $mail->Body = '
+
+        <h2>New Course Enquiry</h2>
+
+        <table
+            cellpadding="10"
+            cellspacing="0"
+            border="1"
+            style="border-collapse:collapse;"
+        >
+
+            <tr>
+                <td><strong>First Name</strong></td>
+                <td>' . htmlspecialchars($firstName) . '</td>
+            </tr>
+
+            <tr>
+                <td><strong>Last Name</strong></td>
+                <td>' . htmlspecialchars($lastName) . '</td>
+            </tr>
+
+            <tr>
+                <td><strong>Email</strong></td>
+                <td>' . htmlspecialchars($email) . '</td>
+            </tr>
+
+            <tr>
+                <td><strong>Phone</strong></td>
+                <td>' . htmlspecialchars($phone) . '</td>
+            </tr>
+
+            <tr>
+                <td><strong>City</strong></td>
+                <td>' . htmlspecialchars($city) . '</td>
+            </tr>
+
+            <tr>
+                <td><strong>Course</strong></td>
+                <td>' . htmlspecialchars($course) . '</td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <strong>Reliance Animation Academy</strong>
+    ';
+
+
+    $mail->AltBody =
+        "New Course Enquiry\n\n" .
+        "First Name: $firstName\n" .
+        "Last Name: $lastName\n" .
+        "Email: $email\n" .
+        "Phone: $phone\n" .
+        "City: $city\n" .
+        "Course: $course\n";
+
+
+    /* SEND */
+
+    $mail->send();
+
 
     echo json_encode([
         'success' => true,
-        'message' => 'Enquiry sent successfully.'
+        'message' => 'Email sent successfully.'
     ]);
 
     exit;
 
+
+} catch (Exception $e) {
+
+    http_response_code(500);
+
+    echo json_encode([
+        'success' => false,
+        'message' => 'Email could not be sent.',
+        'error' => $mail->ErrorInfo
+    ]);
+
+    exit;
 }
-
-
-/* ==========================================================
-   EMAIL FAILED
-   ========================================================== */
-
-http_response_code(500);
-
-echo json_encode([
-    'success' => false,
-    'message' =>
-        'Email could not be sent from the server.'
-]);
-
-exit;
+?>
