@@ -89,10 +89,10 @@ try {
     $mail->SMTPAuth   = true;
 
     /* Gmail account */
-    $mail->Username   = 'mv7852396@gmail.com';
+    $mail->Username   = 'raachennai@gmail.com';
 
     /* YOUR 16 CHARACTER APP PASSWORD */
-    $mail->Password   = 'vajzepdolyhuwxzq';
+    $mail->Password   = 'oetutstywfxqstbp';
 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
@@ -103,7 +103,7 @@ try {
     ========================= */
 
     $mail->setFrom(
-        'mv7852396@gmail.com',
+        'raachennai@gmail.com',
         'Reliance Animation Academy'
     );
 
@@ -112,10 +112,10 @@ try {
        RECEIVER
     ========================= */
 
-    $mail->addAddress(
-        'mv7852396@gmail.com',
-        'Reliance Animation Academy'
-    );
+   $mail->addAddress(
+    'raachennai@gmail.com',
+    'Reliance Animation Academy'
+);
 
 
     /* =========================
