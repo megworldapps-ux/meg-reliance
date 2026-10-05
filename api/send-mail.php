@@ -135,12 +135,13 @@ try {
     $mail->isHTML(true);
 
     $mail->Subject =
-        'New Course Enquiry - Reliance Animation Academy';
+        'New Course Enquiry - Reliance Animation Academy Chennai';
 
 
     $mail->Body = '
 
         <h2>New Course Enquiry</h2>
+        <h1>Reliance Animation Academy-Chennai</h1>
 
         <table
             cellpadding="10"
